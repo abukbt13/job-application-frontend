@@ -34,7 +34,8 @@ import Header from "@/views/includes/header.vue";
             </ul>
             <div class="d-flex justify-content-center">
               <a href="#" class="btn btn-danger">Apply Now</a>
-            </div>          </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col">
@@ -66,7 +67,7 @@ import Header from "@/views/includes/header.vue";
             Dev Ops  Engineer
           </div>
           <div class="card-body">
-            <h5 class="card-title">Description</h5>
+            <h5 class="card-title text-primary text-center">Description</h5>
             <p class="card-text">
               Hosting and maintaining websites in different host and maintaining them.
             </p>
@@ -141,7 +142,7 @@ import Header from "@/views/includes/header.vue";
 <style scoped>
 .main{
   background: #f5ebe0;
-  width: 100vw;
+  //width: 100vw;
   height: 23rem;
 }
 .footer{
