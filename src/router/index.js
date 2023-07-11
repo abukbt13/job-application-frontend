@@ -19,37 +19,37 @@ const routes = [
     path:'/dashboard',
     name:'dashboard',
     component:Dashboard,
-    // children:{
-    //   path:'/personalInformation',
-    //   name:'personalInformation',
-    //   component:PersonalInformation,
-    // }
+    children:[
+    {
+      path:'/dashboard',
+      name:'personal',
+      component:PersonalInformation,
+    },
+      {
+        path:'/dashboard/relevantourses',
+        name:'relevantCourses',
+        component:RelevantCourses
+      },
+      {
+        path:'/referees',
+        name:'referees',
+        component:Referees
+      },
+      {
+        path:'/documents',
+        name:'documents',
+        component:Documents
+      },
+      {
+        path:'/professionalQualification',
+        name:'professionalQualification',
+        component: ProfessionalQualification,
+      }
+
+    ]
   },
-  {
-    path:'/personalInformation',
-    name:'personalInformation',
-    component:PersonalInformation,
-  },
-  {
-  path:'/professionalQualification',
-  name:'professionalQualification',
-  component: ProfessionalQualification,
-},
-{
-path:'/relevantCourses',
-name:'relevantCourses',
-component:RelevantCourses
-},
-{
-  path:'/referees',
-  name:'referees',
-  component:Referees
-},
-{
-  path:'/documents',
-  name:'documents',
-  component:Documents
-},
+
+
   {
     path:'/login',
     name:'login',

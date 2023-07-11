@@ -13,7 +13,7 @@
             <h3 class="mb-5">Personal Information</h3>
 		                    <form>
                                 <div class="form-group row mt-2">
-                                     <label for="firstname" class="col-4 col-form-label">First Name*</label> 
+                                     <label for="firstname" class="col-4 col-form-label">First Name*</label>
                                 <div class="col-2 mb-4">
                                     <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
                                 </div>
