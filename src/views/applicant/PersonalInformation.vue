@@ -3,6 +3,7 @@
 </script>
 
 <template>
+    <h1>personal info</h1>
   <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>

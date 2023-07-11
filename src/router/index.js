@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Login from '../views/auth/login.vue'
 import Register from '../views/auth/register.vue'
 import Dashboard from '../views/applicant/Dashboard.vue'
+import PersonalInformation from '../views/applicant/PersonalInformation.vue'
 
 const routes = [
   {
@@ -13,7 +14,12 @@ const routes = [
   {
     path:'/dashboard',
     name:'dashboard',
-    component:Dashboard
+    component:Dashboard,
+    children:{
+      path:'/',
+      name:'personalInformation',
+      component:PersonalInformation,
+    }
   },
   {
     path:'/login',
