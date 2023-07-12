@@ -9,7 +9,9 @@ import Header from "@/views/includes/header.vue";
     <div class="main d-flex flex-column align-items-center justify-content-center">
       <h2 class="my-3">Shara solution Company</h2>
       <h2 class="mb-5">Home of Software Solutions</h2>
-      <button class="btn btn-danger w-25">About Us</button>
+      <div class="d-flex justify-content-center">
+        <a href="about-us" class="btn btn-danger">About Us</a>
+      </div>
     </div>
     <section style="background-color: aqua;" class="d-flex flex-column align-items-center justify-content-center">
       <h1 class="mb-2">Shara Solutions is hiring developers </h1>
@@ -33,7 +35,7 @@ import Header from "@/views/includes/header.vue";
               <li>He/she should have knowledge of linux Operating system</li>
             </ul>
             <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-danger">Apply Now</a>
+              <a href="register" class="btn btn-danger">Apply Us</a>
             </div>
           </div>
         </div>
@@ -56,7 +58,7 @@ import Header from "@/views/includes/header.vue";
               <li>He/she should know css and bootstrap well</li>
             </ul>
             <div class="d-flex justify-content-center">
-              <a href="#" class="btn btn-danger">Apply Now</a>
+              <a href="register" class="btn btn-danger">Apply Now</a>
             </div>
           </div>
         </div>
@@ -77,7 +79,7 @@ import Header from "@/views/includes/header.vue";
               <li>He/she should know how to use version control and have interacted with github or gitlab</li>
               <li>He/she should have knowledge of linux Operating system</li>
             </ul><div class="d-flex justify-content-center">
-             <a href="#" class="btn btn-danger">Apply Now</a>
+             <a href="register" class="btn btn-danger">Apply Now</a>
            </div>
 
           </div>

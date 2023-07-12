@@ -4,8 +4,10 @@ import {ref} from "vue";
 const email = ref('')
 const password = ref('')
  const createAccount =async () => {
-   const formData = new FormData(email, password);
-   const response = await fetch('http://localhost:000/api/auth/register', {
+   const formData = new FormData();
+   formData.append('email',email.value)
+   formData.append('password',password.value)
+   const response = await fetch('http://127.0.0.1:8000/api/registerUser', {
      method: 'POST',
      body: formData
    });
