@@ -1,47 +1,40 @@
 <script setup>
+import {ref} from "vue";
 
+const email = ref('')
+const password = ref('')
+ const createAccount =async () => {
+   const formData = new FormData(email, password);
+   const response = await fetch('http://localhost:000/api/auth/register', {
+     method: 'POST',
+     body: formData
+   });
+ }
 </script>
 
 <template>
   <section class="vh-100">
-  <div class="container py-5 h-80">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
 
-            <h3 class="mb-5">Register</h3>
-
-            <div class="form-outline mb-4">
-              <label class="form-label" for="typeEmailX-2">Email</label>
-              <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
-            </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="typeEmailX-2">Username</label>
-              <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
-            </div>
-
-            <div class="form-outline mb-4">
-              <label class="form-label" for="typePasswordX-2">Password</label>
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
-            </div>
-            <div class="form-outline mb-4">
-              <label class="form-label" for="typePasswordX-2">Confirm Password</label>
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
-            </div>
-
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
-
-            <hr class="my-4">
-
-             <label>Already have an account <router-link :to ="'/login'"> click here
-             </router-link> </label> 
-
-          </div>
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <p>Already have an account <a href="login">login here</a></p>
+          <form @submit.prevent="createAccount">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input type="email" class="form-control" v-model="email" placeholder="name@example.com">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                <input type="password" class="form-control" v-model="password" placeholder="password">
+              </div>
+              <div class="">
+                <button type="submit" class="w-100 btn btn-primary btn-block">Register</button>
+              </div>
+          </form>
         </div>
+
       </div>
-    </div>
-  </div>
+
 </section>
 </template>
 

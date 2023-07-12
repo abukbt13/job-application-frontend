@@ -4,67 +4,75 @@
 
 <template>
 <section class="vh-100">
-  <div class="container py-5 h-80">
+  <div class="container">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <!-- <div class="col-12 col-md-8 col-lg-6 col-xl-5"> -->
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
 
-            <h3 class="mb-5">Personal Information</h3>
-		                    <form>
-                                <div class="form-group row mt-2">
-                                     <label for="firstname" class="col-4 col-form-label">First Name*</label>
-                                <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
-                                </div>
-                                    <label for="lastname" class="col-2 col-form-label">Last Name*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
-                                </div>
-                                </div>
-                                <div class="form-group row mt-2">
-                                     <label for="email" class="col-4 col-form-label">Email*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
-                                </div>
-                                    <label for="phone" class="col-2 col-form-label">Phone*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
-                                </div>
-                                </div>
-                                <div class="form-group row mt-2">
-                                     <label for="gender" class="col-4 col-form-label">Gender*</label> 
-                                <div class="col-2 mb-4">
-                                    <select id="typeEmailX-2" class="form-control form-control-lg">
-                                        <option value="option1">male</option>
-                                        <option value="option2">female</option>
-                                        </select>
-                                    </div>
-                                    <label for="address" class="col-2 col-form-label">Address*</label> 
-                                    <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
-                                </div>
-                                </div>
-                                <div class="form-group row mt-2">
-                                     <label for="county" class="col-4 col-form-label">County*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
-                                </div>
-                                    <label for="constituency" class="col-2 col-form-label">Constituency*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
-                                </div>
-                                </div>
-                              <div class="form-group row">
-                                <div class="offset-4 col-8">
-                                  <button name="submit" type="submit" class="btn btn-primary">Save & continue</button>
-                                </div>
-                              </div>
-                            </form>
-		                </div>
-		            </div>
-		            </div>
-		        </div>
+    <h3 class="text-center text-primary">Personal Information</h3>
+      <form>
+        <div class="form-group row">
+          <div class="col">
+            <label for="firstname" class="col-4 col-form-label">First Name*</label>
+            <input type="text" id="typeEmailX-2" class="form-control" />
+          </div>
+          <div class="col">
+            <label for="lastname" class="col-4 col-form-label">Last Name*</label>
+            <input type="text" id="typeEmailX-3" class="form-control" />
+          </div>
+       </div>
+      <div class="form-group row">
+          <div class="col">
+            <label for="email" class="col-4 col-form-label">Gender*</label>
+            <input type="email" id="typeEmailX-4" class="form-control" />
+          </div>
+          <div class="col">
+            <label for="phone" class="col-4 col-form-label">Id Number</label>
+            <input type="text" id="typeEmailX-5" class="form-control" />
+          </div>
+       </div>
+        <div class="form-group row">
+          <div class="col">
+            <label for="email" class="col-4 col-form-label">Email*</label>
+            <input type="email" id="typeEmailX-4" class="form-control" />
+          </div>
+          <div class="col">
+            <label for="phone" class="col-4 col-form-label">Phone*</label>
+            <input type="text" id="typeEmailX-5" class="form-control" />
+          </div>
+       </div>
+
+      <div class="form-group row">
+        <div class="col">
+          <label for="city" class="col-form-label">County*</label>
+          <input type="text" id="typeEmailX-7" class="form-control" />
+        </div>
+        <div class="col">
+          <label for="constituency" class="col-form-label">Constituency*</label>
+          <input type="text" id="typeEmailX-2" class="form-control" />
+        </div>
+      </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="address" class="col-4 col-form-label">Address*</label>
+              <input type="text" id="typeEmailX-8" class="form-control" />
+            </div>
+            <div class="col"><br>
+              <button name="submit" type="submit" class="btn mt-3 w- btn-primary">Save & continue</button>
+            </div>
+          </div>
+    </div>
+  </form>
+      <div class="d-flex mt-4 justify-content-around">
+            <div class="">
+              <router-link to="" class="text-decoration-none">Previous</router-link>
+            </div>
+            <div class="">
+              <router-link to="/dashboard/qualification" class="text-decoration-none">Next</router-link>
+            </div>
+      </div>
+</div>
+</div>
+
 		    <!-- </div> -->
 </section>
 </template>

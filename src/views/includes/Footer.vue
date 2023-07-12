@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<p>No yet done</p>
+
 </template>
 
 <style scoped>

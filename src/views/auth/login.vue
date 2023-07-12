@@ -3,38 +3,33 @@
 </script>
 
 <template>
-  <section class="vh-100" style="background-color: grey">
-  <div class="container py-5 h-100">
+  <section class="vh-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
-
-            <h3 class="mb-5">Sign in</h3>
-
-            <div class="form-outline mb-4">
-              <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
-              <label class="form-label" for="typeEmailX-2">Email</label>
-            </div>
-
-            <div class="form-outline mb-4">
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
-              <label class="form-label" for="typePasswordX-2">Password</label>
-            </div>
-
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-
-            <hr class="my-4">
-
-             <label>Don't have an account <router-link :to ="'/register'"> click here
-             </router-link> </label> 
-
-          </div>
+        <p>Don't  have an account <a href="register">Create account here</a></p>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Email address</label>
+          <input type="email" class="form-control" v-model="email" placeholder="name@example.com">
         </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+          <input type="password" class="form-control" v-model="password" placeholder="password">
+        </div>
+        <div class="d-flex">
+          <div class="col">
+            <input type="checkbox">
+            Remember me
+          </div>
+          <div class="col"><a href="request_password" class="text-decoration-none">Forget password</a></div>
+        </div>
+        <div class="">
+          <button type="submit" class="btn w-100 mt-3 btn-primary btn-block">Login</button>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
+
+  </section>
 </template>
 
 <style scoped>

@@ -2,17 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Login from '../views/auth/login.vue'
 import Register from '../views/auth/register.vue'
-import Dashboard from '../views/applicant/Dashboard.vue'
-import PersonalInformation from '../views/applicant/PersonalInformation.vue'
-import ProfessionalQualification from '../views/applicant/ProfessionalQualification.vue'
-import RelevantCourses from '../views/applicant/RelevantCourses.vue'
-import Documents from '../views/applicant/Documents.vue'
-import Referees from '../views/applicant/Referees.vue'
+import Dashboard from '../views/dashboard/Dashboard.vue'
+import Home from "@/views/dashboard/Home.vue";
+import Courses from "@/views/applicant/RelevantCourses.vue"
+import document from "@/views/applicant/Documents.vue"
+import Qualification from "@/views/applicant/ProfessionalQualification.vue"
+import Confirmation from "@/views/applicant/Confirmation.vue"
+import Referees from "@/views/applicant/Referees.vue"
+
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'index',
     component: HomeView
   },
   {
@@ -22,29 +24,36 @@ const routes = [
     children:[
     {
       path:'/dashboard',
-      name:'personal',
-      component:PersonalInformation,
+      name:'home',
+      component:Home,
     },
-      {
-        path:'/dashboard/relevantourses',
-        name:'relevantCourses',
-        component:RelevantCourses
-      },
-      {
-        path:'/referees',
-        name:'referees',
-        component:Referees
-      },
-      {
-        path:'/documents',
-        name:'documents',
-        component:Documents
-      },
-      {
-        path:'/professionalQualification',
-        name:'professionalQualification',
-        component: ProfessionalQualification,
-      }
+
+    {
+      path:'/dashboard/courses',
+      name:'courses',
+      component:Courses,
+    },
+
+    {
+      path:'/dashboard/qualification',
+      name:'qualification',
+      component:Qualification,
+    },
+    {
+      path:'/dashboard/document',
+      name:'document',
+      component:document,
+    },
+    {
+      path:'/dashboard/referees',
+      name:'referees',
+      component:Referees,
+    },
+    {
+      path:'/dashboard/confirmation',
+      name:'confirmation',
+      component:Confirmation,
+    }
 
     ]
   },

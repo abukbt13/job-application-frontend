@@ -11,14 +11,14 @@ import Header from "@/views/includes/header.vue";
       <h2 class="mb-5">Home of Software Solutions</h2>
       <button class="btn btn-danger w-25">About Us</button>
     </div>
-    <section class="d-flex flex-column align-items-center justify-content-center">
-      <p class="mb-2">Shara Solutions is hiring developers </p>
-      <p class="mb-4">The following are the available positions  </p>
-    </section>
-    <div class="row">
+    <section style="background-color: aqua;" class="d-flex flex-column align-items-center justify-content-center">
+      <h1 class="mb-2">Shara Solutions is hiring developers </h1>
+      <p class="mb-4 display-4">The following are the available positions  </p>
+
+    <div class="row" id="jobs">
       <div class="col">
-        <div class="card">
-          <div class="card-header  bg-primary text-white text-center">
+        <div class="card ms-3">
+          <div class="card-header  bg-dark text-white text-center">
           Backend Developer
           </div>
           <div class="card-body">
@@ -40,7 +40,7 @@ import Header from "@/views/includes/header.vue";
       </div>
       <div class="col">
         <div class="card">
-          <div class="card-header  bg-primary text-white text-center">
+          <div class="card-header  bg-dark text-white text-center">
             Frontend developer
           </div>
           <div class="card-body">
@@ -62,8 +62,8 @@ import Header from "@/views/includes/header.vue";
         </div>
       </div>
       <div class="col">
-        <div class="card">
-          <div class="card-header  bg-primary text-white text-center">
+        <div class="card me-2">
+          <div class="card-header  bg-dark text-white text-center">
             Dev Ops  Engineer
           </div>
           <div class="card-body">
@@ -84,6 +84,7 @@ import Header from "@/views/includes/header.vue";
         </div>
       </div>
     </div>
+  </section>
   </div>
   <div class="footer pb-5 pt-3 text-dark">
     <div class="row ms-5 me-5">
