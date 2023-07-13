@@ -1,10 +1,10 @@
 <script setup>
 
-import PersonalInformation from "@/views/applicant/PersonalInformation.vue";
+import Vacancy from "@/views/applicant/Vacancy.vue";
 </script>
 
 <template>
-<PersonalInformation/>
+<Vacancy/>
 </template>
 
 <style scoped>

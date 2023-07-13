@@ -3,38 +3,51 @@
 </script>
 
 <template>
-<section class="vh-100">
-  <div class="container py-5 h-80">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <!-- <div class="col-12 col-md-8 col-lg-6 col-xl-5"> -->
-        <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+  <section class="vh-100">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center h-100">
 
-            <h3 class="mb-5">Documents</h3>
-		                    <form>
-                                <div class="form-group row mt-2">
-                                    <label class="col-2 col-form-label" for="typeEmailX-2">Document:</label>
-                                    <div class="col-2 mb-4">
-                                        <select id="typeEmailX-2" class="form-control form-control-lg">
-                                        <option value="option1">select</option>
-                                        <option value="option1">Degree</option>
-                                        <option value="option2">KCSE</option>
-                                        <option value="option2">Resume</option>
-                                        <option value="option2">Letter</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-4">
-                                        <input type="file" class="form-control form-control-lg" id="customFile" />
-                                    </div>
-                                    </div>
+        <form>
+          <h3 class="text-center text-primary">Documents Upload</h3>
 
-                            </form>
-		                </div>
-		            </div>
-		            </div>
-		        </div>
-		    <!-- </div> -->
-</section>
+          <div class="form-group row">
+            <div class="col">
+              <label for="email" class="">KCSE Certificate</label>
+              <input type="file" id="institution" class="form-control" />
+            </div>
+            <div class="col">
+              <label for="email" class="">Degree / diploma Certificate</label>
+              <input type="file" id="institution" class="form-control" />
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <div class="col">
+              <label for="email" class="">Other document in one file</label>
+              <input type="file" class=" w-50 form-control">
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button class="mt-3 w-75 btn btn-success">Submit</button>
+          </div>
+
+
+        </form>
+        <div class="d-flex mt-4 justify-content-around">
+          <div class="">
+            <router-link to="/applicant/referees" class="text-decoration-none">Previous</router-link>
+          </div>
+          <div class="">
+            <router-link to="/applicant/confirmation" class="text-decoration-none">Finish</router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- </div> -->
+  </section>
 </template>
 
 <style scoped>

@@ -38,9 +38,18 @@
                                 </div>
                               </div>
                             </form>
+            <div class="d-flex mt-4 justify-content-around">
+              <div class="">
+                <router-link to="/applicant/courses" class="text-decoration-none">Previous</router-link>
+              </div>
+              <div class="">
+                <router-link to="/applicant/document" class="text-decoration-none">Next</router-link>
+              </div>
+            </div>
 		                </div>
 		            </div>
 		            </div>
+
 		        </div>
 		    <!-- </div> -->
 </section>

@@ -35,7 +35,7 @@ import Header from "@/views/includes/header.vue";
               <li>He/she should have knowledge of linux Operating system</li>
             </ul>
             <div class="d-flex justify-content-center">
-              <a href="register" class="btn btn-danger">Apply Us</a>
+              <a href="register" class="btn btn-succes-bg-subtle">Apply Us</a>
             </div>
           </div>
         </div>

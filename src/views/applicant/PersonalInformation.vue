@@ -64,10 +64,10 @@
   </form>
       <div class="d-flex mt-4 justify-content-around">
             <div class="">
-              <router-link to="" class="text-decoration-none">Previous</router-link>
+              <router-link to="/applicant" class="text-decoration-none">Previous</router-link>
             </div>
             <div class="">
-              <router-link to="/dashboard/qualification" class="text-decoration-none">Next</router-link>
+              <router-link to="/applicant/qualification" class="text-decoration-none">Next</router-link>
             </div>
       </div>
 </div>
