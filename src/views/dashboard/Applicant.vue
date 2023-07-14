@@ -1,6 +1,8 @@
 <script setup>
 import Header from "@/views/includes/header.vue";
 import ApplicatNavbar from "@/views/includes/ApplicantNavbar.vue";
+
+
 </script>
 <template>
   <Header />
