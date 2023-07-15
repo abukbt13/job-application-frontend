@@ -1,19 +1,67 @@
 <script setup>
 import {ref} from "vue";
 import axios from "axios";
+import {useRouter} from "vue-router";
 
 const name = ref('')
 const description = ref('')
-
-const appplyNow = async () =>{
+const token = localStorage.getItem('token');
+const router =useRouter()
+const headers = {
+  'Authorization': `Bearer ${token}`,
+};
+const applyFrontend = async () =>{
+  name.value ="Frontend";
+  description.value ="Creating Endpoints api for our frontend applications.Testing of endpoints to ensure authentications are met.";
   const formData = new FormData()
   formData.append('name', name.value)
   formData.append('description', description.value)
-  const response = await axios.post('http://localhost:3000/api/v1/posts', {headers})
+  const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
   if(response.status===200){
-
+  if (response.data.status === 'success'){
+    // Example SweetAlert usage
+    await router.push('/application/information')
+  }
+  else{
+    alert(response.data.message)
+  }
   }
 }
+const applyBackend = async () =>{
+  name.value ="Backend";
+  description.value ="Creating of frontend app that are very user friendly ";
+  const formData = new FormData()
+  formData.append('name', name.value)
+  formData.append('description', description.value)
+  const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+  if(response.status===200){
+    if (response.data.status === 'success'){
+      // Example SweetAlert usage
+      await router.push('/application/information')
+    }
+    else{
+      alert(response.data.message)
+    }
+  }
+}
+const applyDevops = async () =>{
+  name.value ="Devops";
+  description.value ="Hosting and maintaining websites in different host and maintaining them. ";
+  const formData = new FormData()
+  formData.append('name', name.value)
+  formData.append('description', description.value)
+  const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+  if(response.status===200){
+    if (response.data.status === 'Success'){
+      // Example SweetAlert usage
+      router.push('/application/information')
+    }
+    else{
+      alert(response.data.message)
+    }
+  }
+}
+
 </script>
 
 <template>
@@ -35,12 +83,9 @@ const appplyNow = async () =>{
             <li>He/she should have knowledge of linux Operating system</li>
           </ul>
           <div class="d-flex justify-content-center">
-            <form @submit.prevent="applyNow">
-              <input type="text" v-model="name" value="Frontend" hidden="">
-              <input
-                  type="text" v-model="description"
-                  value="Creating Endpoints api for our frontend applications.Testing of endpoints to ensure authentications are met."
-                  hidden="">
+            <form @submit.prevent="applyFrontend">
+              <input type="text" v-model="name" hidden>
+              <input type="text" v-model="description" hidden>
               <button type="submit" class="btn btn-danger">Apply Now</button>
             </form>
           </div>
@@ -65,7 +110,11 @@ const appplyNow = async () =>{
             <li>He/she should know css and bootstrap well</li>
           </ul>
           <div class="d-flex justify-content-center">
-            <a href="register" class="btn btn-danger">Apply Now</a>
+            <form @submit.prevent="applyBackend">
+              <input type="text" v-model="name" hidden>
+              <input type="text" v-model="description" hidden>
+              <button type="submit" class="btn btn-danger">Apply Now</button>
+            </form>
           </div>
         </div>
       </div>
@@ -85,9 +134,14 @@ const appplyNow = async () =>{
             <li>He/she should be familiar with Aws </li>
             <li>He/she should know how to use version control and have interacted with github or gitlab</li>
             <li>He/she should have knowledge of linux Operating system</li>
-          </ul><div class="d-flex justify-content-center">
-          <a href="register" class="btn btn-danger">Apply Now</a>
-        </div>
+          </ul>
+          <div class="d-flex justify-content-center">
+            <form @submit.prevent="applyDevops">
+              <input type="text" v-model="name" hidden>
+              <input type="text" v-model="description" hidden>
+              <button type="submit" class="btn btn-danger">Apply Now</button>
+            </form>
+          </div>
 
         </div>
       </div>
