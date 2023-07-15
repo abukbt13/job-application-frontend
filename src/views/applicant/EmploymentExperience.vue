@@ -24,7 +24,7 @@ import {useRouter} from "vue-router";
           formData.append('endDate',endDate.value)
           formData.append('workNature',workNature.value)
 
-  
+            //comment
         const res=await axios.post('http://127.0.0.1:8000/api/addEmplomentExperience',formData,{headers})
         if(res.status==200){
             alert('success')
