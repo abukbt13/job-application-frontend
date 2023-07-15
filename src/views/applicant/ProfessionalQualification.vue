@@ -9,7 +9,7 @@ const level =ref('')
       award=ref('')
       startDate=ref('')
       endDate=ref('')
-      user_id=11
+      user_id= ref('')
       certNo=ref('')
       // dpost=await axios.post('http://127.0.0.1:8000/api/')
 
