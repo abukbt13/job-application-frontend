@@ -1,31 +1,35 @@
 <script setup>
 import axios from "axios"
-import {headers} from '@/composables/headers'
 import {ref} from 'vue'
-import {useRoute} from "vue-router"
+import {useRouter} from "vue-router";
+
+
+const token = localStorage.getItem('token');
+const router =useRouter()
+const headers = {
+  'Authorization': `Bearer ${token}`,
+};
+
 const level =ref('')
-      institution=ref('')
-      course=ref('')
-      award=ref('')
-      startDate=ref('')
-      endDate=ref('')
-      user_id= ref('')
-      certNo=ref('')
+const institution=ref('')
+const course=ref('')
+const award=ref('')
+const startDate=ref('')
+const endDate=ref('')
       // dpost=await axios.post('http://127.0.0.1:8000/api/')
-
-    formData=new FormData()
-    formData.append('level',level.value)
-    formData.append('institution',institution.value)
-    formData.append('course',course.value)
-    formData.append('award',course.award)
-    formData.append('startDate',course.startDate)
-    formData.append('endDate',course.endDate)
-    formData.append('certNo',course.endDate)
-
     const addProfoessionalQualification=async()=>{
+      const formData=new FormData()
+      formData.append('level',level.value)
+      formData.append('institution',institution.value)
+      formData.append('course',course.value)
+      formData.append('award',course.award)
+      formData.append('startDate',course.startDate)
+      formData.append('endDate',course.endDate)
+
+  
         const res=await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{headers})
         if(res.status==200){
-
+            alert('success')
         }
         // dopost('addProfressional',data)
     }
@@ -37,12 +41,12 @@ const level =ref('')
       <div class="row d-flex justify-content-center align-items-center h-100">
 
         <h3 class="text-center text-primary">Professional Qualification</h3>
-        <form>
+        <form @submit.prevent="addProfoessionalQualification">
           <div class="form-group row">
             <div class="col">
               <label for="level" class="col-form-label">Level of Education</label><br>
-              <select class="form-control">
-                <option value="">ewfc</option>
+              <select v-model="level" class="form-control">
+                <option value="">select</option>
                 <option value="Bachelor">Bachelor</option>
                 <option value="Master">Master</option>
                 <option value="Doctor">Doctor</option>
@@ -50,7 +54,7 @@ const level =ref('')
             </div>
             <div class="col">
               <label for="course" class="col-4 col-form-label">Course</label>
-              <select class="form-control" id="">
+              <select v-model="course" class="form-control" id="">
                 <option value="">Select</option>
                 <option value="Computer Science">Computer Science</option>
                 <option value="Software Engineering">Software Engineering</option>
@@ -61,11 +65,11 @@ const level =ref('')
             <div class="form-group row">
             <div class="col">
               <label for="institution" class="col-4 col-form-label">Institution Name</label>
-              <input type="text" id="institution" class="form-control" />
+              <input v-model="institution" type="text" id="institution" class="form-control" />
             </div>
               <div class="col">
                 <label for="award" class="col-4 col-form-label">Award</label><br>
-                <select class="form-control" id="">
+                <select v-model="award" class="form-control" id="">
                   <option value="">Select</option>
                   <option value="First class">First Class</option>
                   <option value="Second Class">Second Class</option>
@@ -78,15 +82,15 @@ const level =ref('')
           <div class="form-group row">
             <div class="col">
               <label for="startDate" class="col-4 col-form-label">Start date</label>
-              <input type="date" class="form-control">
+              <input type="date" v-model="startDate" class="form-control">
             </div>
             <div class="col">
               <label for="endDate" class="col-4 col-form-label">End date</label>
-              <input type="date" class="form-control">
+              <input type="date" v-model="endDate" class="form-control">
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <button @submit="addProfessionalQualification()" class="mt-3 w-75 btn btn-success">Submit</button>
+            <button type="submit" class="mt-3 w-75 btn btn-success">Submit</button>
           </div>
 
 

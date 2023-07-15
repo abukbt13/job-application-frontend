@@ -1,7 +1,37 @@
 <script setup>
-import {applicant} from '@/composables/applicant'
+import axios from "axios"
+import {ref} from 'vue'
+import {useRouter} from "vue-router";
 
-const {level,institution,course,award,startDate,endDate,user_id,certNo,relevantCourses} =applicant()
+
+    const token = localStorage.getItem('token');
+    const router =useRouter()
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+    };
+
+    const level =ref('')
+    const institution=ref('')
+    const course=ref('')
+    const award=ref('')
+    const startDate=ref('')
+    const endDate=ref('')
+          // dpost=await axios.post('http://127.0.0.1:8000/api/')
+          const relevantCourses=async()=>{
+          const formData=new FormData()
+          formData.append('institution',institution.value)
+          formData.append('course',course.value)
+          formData.append('startDate',course.startDate)
+          formData.append('endDate',course.endDate)
+          formData.append('certNo',course.endDate)
+
+  
+        const res=await axios.post('http://127.0.0.1:8000/api/addOtherCourse',formData,{headers})
+        if(res.status==200){
+            alert('success')
+        }
+        // dopost('addProfressional',data)
+    }
 </script>
 
 <template>
@@ -14,7 +44,7 @@ const {level,institution,course,award,startDate,endDate,user_id,certNo,relevantC
           <div class="form-group row">
             <div class="col">
               <label for="institution" class="col-4 col-form-label">Institution Name</label>
-              <input type="text" v-model="institution" id="institution" class="form-control" />
+              <input  type="text" v-model="institution" id="institution" class="form-control" />
             </div>
             <div class="col">
               <label for="course" class="col-4 col-form-label">Course  Name</label>
