@@ -1,5 +1,7 @@
 <script setup>
+import {applicant} from '@/composables/applicant'
 
+const {level,institution,course,award,startDate,endDate,user_id,certNo,relevantCourses} =applicant()
 </script>
 
 <template>
@@ -8,38 +10,38 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
 
         <h3 class="text-center text-primary">Other Relevant Courses</h3>
-        <form>
+        <form @submit.prevent="relevantCourses()" >
           <div class="form-group row">
             <div class="col">
-              <label for="email" class="col-4 col-form-label">Institution Name</label>
-              <input type="text" id="institution" class="form-control" />
+              <label for="institution" class="col-4 col-form-label">Institution Name</label>
+              <input type="text" v-model="institution" id="institution" class="form-control" />
             </div>
             <div class="col">
-              <label for="lastname" class="col-4 col-form-label">Course  Name</label>
-              <input type="text" id="institution" class="form-control" />
+              <label for="course" class="col-4 col-form-label">Course  Name</label>
+              <input type="text" v-model="course" id="institution" class="form-control" />
             </div>
           </div>
           <div class="form-group row">
 
             <div class="col">
-              <label for="phone" class="col-4 col-form-label">Certificate Number</label><br>
-              <input type="text" id="institution" class="form-control" />
+              <label for="certNo" class="col-4 col-form-label">Certificate Number</label><br>
+              <input type="text" v-model="certNo" id="institution" class="form-control" />
             </div>
             <div class="col">
-              <label for="email" class="col-4 col-form-label">Start date</label>
-              <input type="date" class="form-control">
+              <label for="startDate" class="col-4 col-form-label">Start date</label>
+              <input type="date" v-model="startDate" class="form-control">
             </div>
           </div>
 
 
           <div class="form-group row">
             <div class="col">
-              <label for="email" class="col-4 col-form-label">End date</label>
-              <input type="date" class=" w-50 form-control">
+              <label for="endDate" class="col-4 col-form-label">End date</label>
+              <input type="date" v-model="endDate" class=" w-50 form-control">
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <button class="mt-3 w-75 btn btn-success">Submit</button>
+            <button type="submit" class="mt-3 w-75 btn btn-success">Submit</button>
           </div>
 
 

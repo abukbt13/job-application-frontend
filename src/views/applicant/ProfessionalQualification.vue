@@ -1,5 +1,34 @@
 <script setup>
+import axios from "axios"
+import {headers} from '@/composables/headers'
+import {ref} from 'vue'
+import {useRoute} from "vue-router"
+const level =ref('')
+      institution=ref('')
+      course=ref('')
+      award=ref('')
+      startDate=ref('')
+      endDate=ref('')
+      user_id=11
+      certNo=ref('')
+      // dpost=await axios.post('http://127.0.0.1:8000/api/')
 
+    formData=new FormData()
+    formData.append('level',level.value)
+    formData.append('institution',institution.value)
+    formData.append('course',course.value)
+    formData.append('award',course.award)
+    formData.append('startDate',course.startDate)
+    formData.append('endDate',course.endDate)
+    formData.append('certNo',course.endDate)
+
+    const addProfoessionalQualification=async()=>{
+        const res=await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{headers})
+        if(res.status==200){
+
+        }
+        // dopost('addProfressional',data)
+    }
 </script>
 
 <template>
@@ -11,7 +40,7 @@
         <form>
           <div class="form-group row">
             <div class="col">
-              <label for="firstname" class="col-form-label">Level of Education</label><br>
+              <label for="level" class="col-form-label">Level of Education</label><br>
               <select class="form-control">
                 <option value="">ewfc</option>
                 <option value="Bachelor">Bachelor</option>
@@ -20,7 +49,7 @@
               </select>
             </div>
             <div class="col">
-              <label for="email" class="col-4 col-form-label">Course</label>
+              <label for="course" class="col-4 col-form-label">Course</label>
               <select class="form-control" id="">
                 <option value="">Select</option>
                 <option value="Computer Science">Computer Science</option>
@@ -31,11 +60,11 @@
           </div>
             <div class="form-group row">
             <div class="col">
-              <label for="lastname" class="col-4 col-form-label">Institution Name</label>
+              <label for="institution" class="col-4 col-form-label">Institution Name</label>
               <input type="text" id="institution" class="form-control" />
             </div>
               <div class="col">
-                <label for="phone" class="col-4 col-form-label">Award</label><br>
+                <label for="award" class="col-4 col-form-label">Award</label><br>
                 <select class="form-control" id="">
                   <option value="">Select</option>
                   <option value="First class">First Class</option>
@@ -48,16 +77,16 @@
 
           <div class="form-group row">
             <div class="col">
-              <label for="email" class="col-4 col-form-label">Start date</label>
+              <label for="startDate" class="col-4 col-form-label">Start date</label>
               <input type="date" class="form-control">
             </div>
             <div class="col">
-              <label for="email" class="col-4 col-form-label">End date</label>
+              <label for="endDate" class="col-4 col-form-label">End date</label>
               <input type="date" class="form-control">
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <button class="mt-3 w-75 btn btn-success">Submit</button>
+            <button @submit="addProfessionalQualification()" class="mt-3 w-75 btn btn-success">Submit</button>
           </div>
 
 
