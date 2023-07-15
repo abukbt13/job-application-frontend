@@ -1,25 +1,5 @@
 <script setup>
-import {onMounted} from "vue";
-import axios from "axios";
-// #######   Authenticate user
-const authUser = async () => {
-  const authHeader = { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } };
-  try {
-    const response = await axios.get('http://127.0.0.1:8000/api/user-auth', authHeader);
-    console.log(response);
-    // alert('success')
-  } catch (error) {
-    // console.log(error);
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('id');
-    // localStorage.removeItem('role');
-    // Token is invalid or expired, logout the user
-    window.location.href = '/login';
-  }
-};
-onMounted(()=>{
-  authUser();
-})
+
 </script>
 
 <template>

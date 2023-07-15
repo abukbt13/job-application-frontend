@@ -1,5 +1,6 @@
 <script setup>
 import {ref} from "vue";
+import axios from "axios";
 import {useRouter} from "vue-router";
 const router = useRouter()
 const email = ref('')
@@ -15,24 +16,20 @@ const regerror = ref('')
      formData.append('email', email.value)
      formData.append('password', password.value)
      formData.append('c_password', c_password.value)
-     await fetch('http://127.0.0.1:8000/api/registerUser', {
-       method: 'POST',
-       body: formData
-     })
-         .then(response => {
-           if (response.status === 200) {
-             return response.json();
-           } else {
-             throw new Error('Failed to create an account');
-           }
-         })
-         .then(data => {
-           localStorage.setItem('token', data.token);
-           router.push('/applicant')
-         })
-         .catch(error => {
-           console.error(error);
-         });
+    const res = await axios.post('http://127.0.0.1:8000/api/registerUser',formData)
+       if(res.status == 200){
+            if(res.data.status == 'success'){
+              localStorage.setItem('token', res.data.access_token)
+              router.push('applicant')
+            }
+            else{
+              regerror.value = res.data.message
+            }
+       }
+       else{
+        regerror.value = 'url not found'
+       } 
+        
    }
    else {
      regerror.value = 'Passwords do not match'
