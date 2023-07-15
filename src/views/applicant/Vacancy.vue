@@ -1,5 +1,19 @@
 <script setup>
+import {ref} from "vue";
+import axios from "axios";
 
+const name = ref('')
+const description = ref('')
+
+const appplyNow = async () =>{
+  const formData = new FormData()
+  formData.append('name', name.value)
+  formData.append('description', description.value)
+  const response = await axios.post('http://localhost:3000/api/v1/posts', {headers})
+  if(response.status===200){
+
+  }
+}
 </script>
 
 <template>
@@ -21,7 +35,14 @@
             <li>He/she should have knowledge of linux Operating system</li>
           </ul>
           <div class="d-flex justify-content-center">
-            <a href="register" class="btn btn-succes-bg-subtle">Apply Us</a>
+            <form @submit.prevent="applyNow">
+              <input type="text" v-model="name" value="Frontend" hidden="">
+              <input
+                  type="text" v-model="description"
+                  value="Creating Endpoints api for our frontend applications.Testing of endpoints to ensure authentications are met."
+                  hidden="">
+              <button type="submit" class="btn btn-danger">Apply Now</button>
+            </form>
           </div>
         </div>
       </div>

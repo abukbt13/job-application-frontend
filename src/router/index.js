@@ -30,7 +30,7 @@ const routes = [
     component:Applicant,
     children:[
     {
-      path:'/applicant',
+      path:'',
       name:'home',
       component:Home,
     },
