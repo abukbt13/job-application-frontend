@@ -64,12 +64,12 @@ const applyDevops = async () =>{
 
 </script>
 
-<template>
+<template>  
   <div class="row" id="jobs">
     <div class="col col-4">
       <div class="card ms-3">
         <div class="card-header  bg-dark text-white text-center">
-          Backend Developer
+          Frontend Developer
         </div>
         <div class="card-body">
           <h3 class="card-title text-center text-primary">Description</h3>
@@ -95,7 +95,7 @@ const applyDevops = async () =>{
     <div class="col col-4">
       <div class="card">
         <div class="card-header  bg-dark text-white text-center">
-          Frontend developer
+          Backend developer
         </div>
         <div class="card-body">
           <h5 class="card-title text-center text-primary">Description</h5>
@@ -113,7 +113,7 @@ const applyDevops = async () =>{
             <form @submit.prevent="applyBackend">
               <input type="text" v-model="name" hidden>
               <input type="text" v-model="description" hidden>
-              <button type="submit" class="btn btn-danger">Apply Now</button>
+              <button type="submit" class="btn btn-danger">Apply bd Now</button>
             </form>
           </div>
         </div>
