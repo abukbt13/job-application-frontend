@@ -10,7 +10,7 @@ import ApplicatNavbar from "@/views/includes/ApplicantNavbar.vue";
     <div class="sidebar bg-dark text-white">
       <ApplicatNavbar />
     </div>
-    <div class="main d-flex">
+    <div class="main">
       <router-view></router-view>
     </div>
   </div>

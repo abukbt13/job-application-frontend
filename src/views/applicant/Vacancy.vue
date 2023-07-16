@@ -146,14 +146,17 @@ const applyDevops = async () =>{
         </div>
       </div>
     </div>
+
   </div>
-  <hr>
-  <div class="">
-    <div class="col d-flex">
-      <div class="">abraham</div>
-      <div class="">abraham</div>
+  <div class="d-flex mt-4 justify-content-around">
+    <div class="">
+      <router-link to="/applicant" class="text-decoration-none"></router-link>
+    </div>
+    <div class="">
+      <router-link to="/applicant/information" class="text-decoration-none">Next</router-link>
     </div>
   </div>
+
 </template>
 
 <style scoped>
