@@ -9,13 +9,25 @@ import {useRouter} from "vue-router";
     const headers = {
       'Authorization': `Bearer ${token}`,
     };
-
-    const position =ref('')
-    const organisation=ref('')
-    const workNature=ref('')
-    const startDate=ref('')
-    const endDate=ref('')
-          // dpost=await axios.post('http://127.0.0.1:8000/api/')
+    const{position,organisation,workNature,startDate,endDate, baseUrl}={
+     position:ref(''),
+     organisation:ref(''),
+     workNature:ref(''),
+     startDate:ref(''),
+     endDate:ref(''),
+     baseUrl:'http://127.0.0.1:8000/api/'
+    }
+    async function dopost(endpoint, data) {
+        try {
+          const res = await axios.post(baseUrl + endpoint, data,{headers});
+        if(res.status==200){
+            alert('success')
+        }
+        } catch (error) {
+          console.error(error);
+          // Handle the error
+        }
+      }
           const employmentExperience=async()=>{
           const formData=new FormData()
           formData.append('position',position.value)
@@ -24,12 +36,13 @@ import {useRouter} from "vue-router";
           formData.append('endDate',endDate.value)
           formData.append('workNature',workNature.value)
 
-            //comment
-        const res=await axios.post('http://127.0.0.1:8000/api/addEmplomentExperience',formData,{headers})
-        if(res.status==200){
-            alert('success')
-        }
-        // dopost('addProfressional',data)
+        dopost('addEmplomentExperience',formData)
+            position.value = '';
+            organisation.value = '';
+            startDate.value = '';
+            endDate.value = '';
+            workNature.value = ''
+
     }
 </script>
 
