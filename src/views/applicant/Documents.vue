@@ -1,5 +1,37 @@
 <script setup>
 
+import {headers} from "@/composables/headers";
+import axios from "axios";
+import {ref,watch} from "vue";
+
+const description =ref('')
+const name =ref('')
+const file =ref('')
+watch(name, (newValue) => {
+  if (newValue === 'degree') {
+    description.value = 'Degree certificate';
+  } else if (newValue === 'resume') {
+    description.value = 'RESUME certificate';
+  } else {
+    description.value = 'KCSE Certificate';
+  }
+});
+function certificateUpload(e){
+  file.value=e.target.files[0];
+}
+const saveDocument = async () => {
+  const formData = new FormData()
+  formData.append('name',name.value)
+  formData.append('description',description.value)
+  formData.append('file',file.value)
+  console.log(formData)
+
+  const response = await axios.post('http://127.0.0.1:8000/api/addDocument',formData,{headers})
+  if(response.status===200){
+    alert('success')
+  }
+
+}
 </script>
 
 <template>
@@ -7,30 +39,25 @@
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
 
-        <form>
+        <form @submit.prevent="saveDocument">
           <h3 class="text-center text-primary">Documents Upload</h3>
+          <label>Select Type of document</label><br>
+
+
+          <select v-model="name">
+            <option disabled selected value="">--- Select one ---</option>
+            <option value="kcse">KCSE</option>
+            <option value="resume">Resume</option>
+            <option value="degree">Degree</option>
+          </select>
 
           <div class="form-group row">
             <div class="col">
-              <label for="email" class="">KCSE Certificate</label>
-              <input type="file" id="institution" class="form-control" />
-            </div>
-            <div class="col">
-              <label for="email" class="">Degree / diploma Certificate</label>
-              <input type="file" id="institution" class="form-control" />
-            </div>
+              <label for="certificate" class="">KCSE Certificate</label>
+              <input type="file" @change="certificateUpload" id="institution" class="form-control" />
+              <button class="btn btn-success">Submit</button>
+
           </div>
-
-
-
-          <div class="form-group row">
-            <div class="col">
-              <label for="email" class="">Other document in one file</label>
-              <input type="file" class=" w-50 form-control">
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button class="mt-3 w-75 btn btn-success">Submit</button>
           </div>
 
 

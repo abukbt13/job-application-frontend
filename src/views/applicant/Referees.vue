@@ -1,5 +1,23 @@
 <script setup>
+import {ref} from "vue";
+import axios from "axios";
+import {headers} from "@/composables/headers";
 
+const fullName =ref('')
+const occupation =ref('')
+const email = ref('')
+const phone  = ref('')
+const saveReference = async () =>{
+  const formData = new FormData()
+  formData.append('fullName',fullName.value)
+  formData.append('occupation',occupation.value)
+  formData.append('email',email.value)
+  formData.append('phone',phone.value)
+  const response = await axios.post('http://127.0.0.1:8000/api/addReferees', formData,{headers })
+  if(response.status===200){
+    alert('Success')
+  }
+}
 </script>
 
 <template>
@@ -11,25 +29,25 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5">Referees</h3>
-		                    <form>
+		                    <form @submit.prevent="saveReference">
                                 <div class="form-group row mt-2">
                                      <label for="name" class="col-4 col-form-label">Name*</label> 
                                 <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
+                                    <input type="text" v-model="fullName" class="form-control form-control-lg" />
                                 </div>
                                     <label for="occupation" class="col-2 col-form-label">Occupation*</label> 
                                 <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
+                                    <input type="text" v-model="occupation" class="form-control form-control-lg" />
                                 </div>
                                 </div>
                                 <div class="form-group row mt-2">
                                      <label for="phone" class="col-4 col-form-label">Phone*</label> 
                                 <div class="col-2 mb-4">
-                                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                                    <input type="email" v-model="phone" class="form-control form-control-lg" />
                                 </div>
                                     <label for="email" class="col-2 col-form-label">Email*</label> 
                                 <div class="col-2 mb-4">
-                                    <input type="text" id="typeEmailX-2" class="form-control form-control-lg" />
+                                    <input type="text" v-model="email" class="form-control form-control-lg" />
                                 </div>
                                 </div>
                               <div class="form-group row">

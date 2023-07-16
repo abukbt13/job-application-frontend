@@ -1,4 +1,35 @@
 <script setup>
+import axios from "axios";
+import {ref} from "vue";
+import {headers} from "@/composables/headers";
+
+const firstName = ref('')
+const idNo = ref('')
+const lastName = ref('')
+const gender = ref('')
+const phone = ref('')
+const address = ref('')
+const county = ref('')
+const constituency = ref('')
+
+const savePersonalInfo =async () => {
+    const formData = new FormData();
+    formData.append("firstName", firstName.value);
+    formData.append("lastName", lastName.value);
+    formData.append("gender", gender.value);
+    formData.append("phone", phone.value);
+    formData.append("address", address.value);
+    formData.append("county", county.value);
+    formData.append("constituency", constituency.value);
+    formData.append("idNo", idNo.value);
+
+    const ressponse = await axios.post('http://127.0.0.1:8000/api/addPersonalInfo',formData,{ headers })
+  if(ressponse.status==200){
+    alert('Personal Info Saved')
+  }
+
+}
+
 
 </script>
 
@@ -8,56 +39,53 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
 
     <h3 class="text-center text-primary">Personal Information</h3>
-      <form>
+      <form @submit.prevent="savePersonalInfo">
         <div class="form-group row">
           <div class="col">
             <label for="firstname" class="col-4 col-form-label">First Name*</label>
-            <input type="text" id="typeEmailX-2" class="form-control" />
+            <input type="text" v-model="firstName" class="form-control" />
           </div>
           <div class="col">
             <label for="lastname" class="col-4 col-form-label">Last Name*</label>
-            <input type="text" id="typeEmailX-3" class="form-control" />
+            <input type="text" v-model="lastName" class="form-control" />
           </div>
        </div>
       <div class="form-group row">
           <div class="col">
             <label for="email" class="col-4 col-form-label">Gender*</label>
-            <input type="email" id="typeEmailX-4" class="form-control" />
+            <input type="email" v-model="gender" class="form-control" />
           </div>
           <div class="col">
-            <label for="phone" class="col-4 col-form-label">Id Number</label>
-            <input type="text" id="typeEmailX-5" class="form-control" />
+            <label for="phone" class="col-4 col-form-label">Phone Number</label>
+            <input type="number" v-model="phone" class="form-control" />
           </div>
        </div>
         <div class="form-group row">
           <div class="col">
-            <label for="email" class="col-4 col-form-label">Email*</label>
-            <input type="email" id="typeEmailX-4" class="form-control" />
+            <label for="address" class="col-4 col-form-label">Address*</label>
+            <input type="text" v-model="address" class="form-control" />
           </div>
           <div class="col">
-            <label for="phone" class="col-4 col-form-label">Phone*</label>
-            <input type="text" id="typeEmailX-5" class="form-control" />
+            <label for="address" class="col-4 col-form-label">Id Number</label>
+            <input type="number" v-model="idNo" class="form-control" />
           </div>
+
        </div>
 
       <div class="form-group row">
         <div class="col">
           <label for="city" class="col-form-label">County*</label>
-          <input type="text" id="typeEmailX-7" class="form-control" />
+          <input type="text" v-model="county" class="form-control" />
         </div>
         <div class="col">
           <label for="constituency" class="col-form-label">Constituency*</label>
-          <input type="text" id="typeEmailX-2" class="form-control" />
+          <input type="text" v-model="constituency" class="form-control" />
         </div>
       </div>
         <div class="form-group">
           <div class="row">
-            <div class="col">
-              <label for="address" class="col-4 col-form-label">Address*</label>
-              <input type="text" id="typeEmailX-8" class="form-control" />
-            </div>
             <div class="col"><br>
-              <button name="submit" type="submit" class="btn mt-3 w- btn-primary">Save & continue</button>
+              <button  type="submit" class="btn mt-3 w- btn-primary">Save & continue</button>
             </div>
           </div>
     </div>
