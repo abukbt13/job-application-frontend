@@ -1,7 +1,7 @@
 <script setup>
 import axios from "axios";
 import {ref} from "vue";
-import {headers} from "@/composables/headers";
+import {headers} from "../../composables/headers.js";
 
 const firstName = ref('')
 const idNo = ref('')

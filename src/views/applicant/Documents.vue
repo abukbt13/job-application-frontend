@@ -1,6 +1,6 @@
 <script setup>
 
-import {headers} from "@/composables/headers";
+import { headers } from "@/composables/headers.js";
 import axios from "axios";
 import {ref,watch} from "vue";
 
@@ -26,7 +26,7 @@ const saveDocument = async () => {
   formData.append('file',file.value)
   console.log(formData)
 
-  const response = await axios.post('http://127.0.0.1:8000/api/addDocument',formData,{headers})
+  const response  = await axios.post('http://127.0.0.1:8000/api/addDocument',formData,{headers})
   if(response.status===200){
     alert('success')
   }
