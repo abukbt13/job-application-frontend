@@ -18,6 +18,8 @@ import PersonalInformation from "@/views/applicant/PersonalInformation.vue";
 import EmploymentExperience from "@/views/applicant/EmploymentExperience.vue";
 import Testing from "@/views/testing/Testing.vue";
 
+import Watch from "@/views/new_concepts/Watch.vue";
+
 
 const routes = [
   {
@@ -111,6 +113,10 @@ const routes = [
     path:'/testing',
     name:'testing',
     component:Testing
+  },
+  {
+    path:'/newconcept',
+    component:Watch
   }
 ]
 
