@@ -16,6 +16,7 @@ import Applicant from "@/views/dashboard/Applicant.vue";
 import Vacancy from "@/views/applicant/Vacancy.vue";
 import PersonalInformation from "@/views/applicant/PersonalInformation.vue";
 import EmploymentExperience from "@/views/applicant/EmploymentExperience.vue";
+import Watch from "@/views/new_concepts/Watch.vue";
 
 
 const routes = [
@@ -105,6 +106,10 @@ const routes = [
     path:'/register',
     name:'register',
     component:Register
+  },
+  {
+    path:'/newconcept',
+    component:Watch
   }
 ]
 
