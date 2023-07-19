@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ForgotPassword from '../views/auth/forgotPassword.vue'
+import ResetPassword from '../views/auth/ResetPassword.vue'
 import Login from '../views/auth/login.vue'
 import Register from '../views/auth/register.vue'
 import Applicant_Users from '../views/admin/Applicants.vue'
@@ -83,7 +84,11 @@ const routes = [
     name:'login',
     component:Login
   },
-  
+  {
+    path:'/reset-password',
+    name:'reset-password',
+    component:ResetPassword
+  },
   {
     path:'/forgot-password',
     name:'forgot-password',
