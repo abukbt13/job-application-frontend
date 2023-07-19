@@ -1,5 +1,9 @@
 <script setup>
-import { ShForm } from '@iankibetsh/shframework'
+import { ShForm,shApis, ShTable } from '@iankibetsh/shframework'
+function userLogin(res) {
+  console.log(res)
+  localStorage.setItem('token',res.token)
+}
 
 </script>
 
@@ -13,14 +17,22 @@ import { ShForm } from '@iankibetsh/shframework'
             <div class="row">
               <sh-form
               :fields="['email','password']"
+              :current-data="{
+                editedUser
+              }"
               action="auth/login"
-              :successCallback="userRegistered"
+              :successCallback="userLogin"
               />
+
             </div>
           </div>
         <div class="d-flex">
       
-          <div class="col"><a href="request_password" class="text-decoration-none">Forget password</a></div>
+          <div class="col">
+            <router-link to="/forgot-password">
+            Forget password
+          </router-link>
+          </div>
         </div>
         <div class="">
         </div>
