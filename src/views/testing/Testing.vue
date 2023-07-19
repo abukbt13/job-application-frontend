@@ -1,6 +1,12 @@
 <script setup>
+<<<<<<< HEAD
 import { ShForm,shApis, ShTable  } from '@iankibetsh/shframework'
 const {successCallback} = ShForm
+=======
+import { ShForm } from '@iankibetsh/shframework'
+const {successCallback}=ShForm
+console.log('hey there response')
+>>>>>>> f89a731 (minor changes)
 console.log(successCallback)
 import {ref} from 'vue'
 const user_id=ref('')
