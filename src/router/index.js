@@ -20,6 +20,7 @@ import EmploymentExperience from "@/views/applicant/EmploymentExperience.vue";
 import Testing from "@/views/testing/Testing.vue";
 
 import Watch from "@/views/new_concepts/Watch.vue";
+import FinishReset from "@/views/auth/FinishReset.vue";
 
 
 const routes = [
@@ -88,6 +89,12 @@ const routes = [
     path:'/forgot-password',
     name:'forgot-password',
     component:ForgotPassword
+  },
+
+  {
+    path:'/finishreset/:id',
+    name:'finishreset',
+    component:FinishReset
   },
   {
     path:'/dashboard',
