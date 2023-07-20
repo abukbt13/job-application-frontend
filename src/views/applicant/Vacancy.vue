@@ -5,6 +5,7 @@ import {useRouter} from "vue-router";
 
 import Swal from 'sweetalert2'
 const name = ref('')
+const vacancyname = ref('')
 const description = ref('')
 const token = localStorage.getItem('token');
 const router =useRouter()
@@ -17,21 +18,43 @@ const applyFrontend = async () =>{
   const formData = new FormData()
   formData.append('name', name.value)
   formData.append('description', description.value)
-  const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
-  if(response.status===200){
-  if (response.data.status === 'success'){
+
+  if (vacancyname.value === '') {
+    const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+    Swal.fire(
+        'Good job!',
+        'You have chosed a vacancy!',
+        'success'
+    ).then(() => {
+          router.push('/applicant/information')
+        }
+    )
+  }
+  else {
     Swal.fire({
-      title: 'success!',
-      text: 'Do you want to continue',
-      icon: 'success',
-      confirmButtonText: 'Cool'
+      title: 'Are you sure?',
+      text: "Your vacancy will be updated",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Update vacancy!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const response =  axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+
+        Swal.fire(
+            'Success!',
+            'Your vacancy have been updated .',
+            'success'
+        ).then(() => {
+              router.push('/applicant/information')
+            }
+        )
+      }
     })
-    await router.push('/application/information')
   }
-  else{
-    alert(response.data.message)
-  }
-  }
+
 }
 const applyBackend = async () =>{
   name.value ="Backend";
@@ -39,15 +62,40 @@ const applyBackend = async () =>{
   const formData = new FormData()
   formData.append('name', name.value)
   formData.append('description', description.value)
-  const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
-  if(response.status===200){
-    if (response.data.status === 'success'){
-      // Example SweetAlert usage
-      await router.push('/application/information')
-    }
-    else{
-      alert(response.data.message)
-    }
+  if (vacancyname.value === '') {
+    const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+    Swal.fire(
+        'Good job!',
+        'You have chosed a vacancy!',
+        'success'
+    ).then(() => {
+          router.push('/applicant/information')
+        }
+    )
+  }
+  else {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Your vacancy will be updated",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Update vacancy!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const response =  axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+
+        Swal.fire(
+            'Success!',
+            'Your vacancy have been updated .',
+            'success'
+        ).then(() => {
+              router.push('/applicant/information')
+            }
+        )
+      }
+    })
   }
 }
 const applyDevops = async () =>{
@@ -56,37 +104,43 @@ const applyDevops = async () =>{
   const formData = new FormData()
   formData.append('name', name.value)
   formData.append('description', description.value)
-  const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
-  if(response.status===200){
-    if (response.data.status === 'Success'){
-      // Example SweetAlert usage
-      router.push('/application/information')
-    }
-    else{
-      alert(response.data.message)
-    }
+  if (vacancyname.value === '') {
+    const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+    Swal.fire(
+        'Good job!',
+        'You have chosed a vacancy!',
+        'success'
+    ).then(() => {
+          router.push('/applicant/information')
+        }
+    )
+  }
+  else {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Your vacancy will be updated",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Update vacancy!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const response =  axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+
+        Swal.fire(
+            'Success!',
+            'Your vacancy have been updated .',
+            'success'
+        ).then(() => {
+              router.push('/applicant/information')
+            }
+        )
+      }
+    })
   }
 }
 
-function markComplete(){
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-      )
-    }
-  })
-}
 
 </script>
 

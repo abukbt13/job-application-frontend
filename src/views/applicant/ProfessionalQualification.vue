@@ -2,7 +2,7 @@
 import axios from "axios"
 import {ref} from 'vue'
 import {useRouter} from "vue-router";
-
+import Swal from "sweetalert2";
 
 const token = localStorage.getItem('token');
 const router =useRouter()
@@ -29,9 +29,16 @@ const endDate=ref('')
   
         const res=await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{headers})
         if(res.status==200){
-            alert('success')
+          Swal.fire({
+            title: 'Success submitting ?',
+            text: "You have successfully added your personal qualification",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'continue'
+          }).then((result) => {
+            router.push('/applicant/courses')
+          })
         }
-        // dopost('addProfressional',data)
     }
 </script>
 
