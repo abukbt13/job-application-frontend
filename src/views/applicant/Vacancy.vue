@@ -1,9 +1,12 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
 import {useRouter} from "vue-router";
 
+import {authorize} from "@/composables/authorize";
+const {authUser} =authorize()
 import Swal from 'sweetalert2'
+const vacancies=ref(null)
 const name = ref('')
 const vacancyname = ref('')
 const description = ref('')
@@ -12,6 +15,15 @@ const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
+const getVacancies = async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_vacancies', { headers});
+  if(response.status === 200){
+    vacancyname.value=response.data.data[0].name
+
+    console.log(vacancyname)
+  }
+
+}
 const applyFrontend = async () =>{
   name.value ="Frontend";
   description.value ="Creating Endpoints api for our frontend applications.Testing of endpoints to ensure authentications are met.";
@@ -141,6 +153,10 @@ const applyDevops = async () =>{
   }
 }
 
+onMounted(()=>{
+  authUser()
+  getVacancies()
+})
 
 </script>
 
