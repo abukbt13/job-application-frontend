@@ -18,9 +18,9 @@ const regerror = ref('')
      formData.append('password', password.value)
      formData.append('c_password', c_password.value)
     const res = await axios.post('http://127.0.0.1:8000/api/registerUser',formData)
-       if(res.status == 200){
-            if(res.data.status == 'success'){
-              localStorage.setItem('token', res.data.access_token)
+       if(res.status === 200){
+            if(res.data.status === 'success'){
+              localStorage.setItem('token', res.data.token)
               router.push('applicant')
             }
             else{

@@ -3,6 +3,7 @@ import {ref} from "vue";
 import axios from "axios";
 import {useRouter} from "vue-router";
 
+import Swal from 'sweetalert2'
 const name = ref('')
 const description = ref('')
 const token = localStorage.getItem('token');
@@ -19,7 +20,12 @@ const applyFrontend = async () =>{
   const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
   if(response.status===200){
   if (response.data.status === 'success'){
-    // Example SweetAlert usage
+    Swal.fire({
+      title: 'success!',
+      text: 'Do you want to continue',
+      icon: 'success',
+      confirmButtonText: 'Cool'
+    })
     await router.push('/application/information')
   }
   else{
@@ -60,6 +66,26 @@ const applyDevops = async () =>{
       alert(response.data.message)
     }
   }
+}
+
+function markComplete(){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+      )
+    }
+  })
 }
 
 </script>
