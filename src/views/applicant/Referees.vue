@@ -43,7 +43,7 @@ const saveReference = async () =>{
                                 <div class="form-group row mt-2">
                                      <label for="phone" class="col-4 col-form-label">Phone*</label> 
                                 <div class="col-2 mb-4">
-                                    <input type="email" v-model="phone" class="form-control form-control-lg" />
+                                    <input type="text" v-model="phone" class="form-control form-control-lg" />
                                 </div>
                                     <label for="email" class="col-2 col-form-label">Email*</label> 
                                 <div class="col-2 mb-4">

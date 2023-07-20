@@ -53,7 +53,7 @@ const savePersonalInfo =async () => {
       <div class="form-group row">
           <div class="col">
             <label for="email" class="col-4 col-form-label">Gender*</label>
-            <input type="email" v-model="gender" class="form-control" />
+            <input type="text" v-model="gender" class="form-control" />
           </div>
           <div class="col">
             <label for="phone" class="col-4 col-form-label">Phone Number</label>
