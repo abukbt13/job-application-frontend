@@ -1,6 +1,6 @@
 <script setup>
 import axios from "axios"
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import {useRouter} from "vue-router";
 import Swal from "sweetalert2";
 
@@ -10,36 +10,53 @@ const headers = {
   'Authorization': `Bearer ${token}`,
 };
 
-const level =ref('')
-const institution=ref('')
-const course=ref('')
-const award=ref('')
-const startDate=ref('')
-const endDate=ref('')
-      // dpost=await axios.post('http://127.0.0.1:8000/api/')
+  const level =ref('')
+  const institution=ref('')
+  const course=ref('')
+  const award=ref('')
+  const startDate=ref('')
+  const endDate=ref('')
+  const user_id=ref('')
+
+    const getPersonalQualification = async () => {
+      const response = await axios.get('http://127.0.0.1:8000/api/list_professional_qualificaion', {headers});
+      if (response.status === 200) {
+        level.value = response.data.user[0].level
+        institution.value = response.data.user[0].institution
+        course.value = response.data.user[0].course
+        award.value = response.data.user[0].award
+        startDate.value = response.data.user[0].start_date
+        endDate.value = response.data.user[0].end_date
+        user_id.value = response.data.user[0].id
+        console.log(response.data.user[0])
+      }
+    }
     const addProfoessionalQualification=async()=>{
       const formData=new FormData()
-      formData.append('level',level.value)
-      formData.append('institution',institution.value)
-      formData.append('course',course.value)
-      formData.append('award',course.award)
-      formData.append('startDate',course.startDate)
-      formData.append('endDate',course.endDate)
-
+            formData.append('level',level.value)
+            formData.append('institution',institution.value)
+            formData.append('course',course.value)
+            formData.append('award',course.award)
+            formData.append('startDate',course.startDate)
+            formData.append('endDate',course.endDate)
   
         const res=await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{headers})
         if(res.status==200){
-          Swal.fire({
-            title: 'Success submitting ?',
-            text: "You have successfully added your personal qualification",
-            icon: 'success',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'continue'
-          }).then((result) => {
-            router.push('/applicant/courses')
-          })
+                  Swal.fire({
+                        title: 'Success submitting ?',
+                        text: "You have successfully added your personal qualification",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'continue'
+                  }).then((result) => {
+                       router.push('/applicant/courses')
+                  })
         }
     }
+
+    onMounted(()=> {
+      getPersonalQualification()
+    })
 </script>
 
 <template>

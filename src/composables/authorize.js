@@ -1,4 +1,4 @@
-import axios from "core-js/internals/queue";
+import axios from "axios";
 import {onMounted} from "vue";
 
 export function authorize(){
@@ -13,7 +13,7 @@ export function authorize(){
             // localStorage.removeItem('id');
             // localStorage.removeItem('role');
             // Token is invalid or expired, logout the user
-            // window.location.href = '/login';
+            window.location.href = '/login';
         }
         onMounted(()=>{
             authUser();

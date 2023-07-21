@@ -2,7 +2,7 @@
 
 import { headers } from "@/composables/headers.js";
 import axios from "axios";
-import {ref,watch} from "vue";
+import {onMounted, ref, watch} from "vue";
 
 const description =ref('')
 const name =ref('')
@@ -19,6 +19,15 @@ watch(name, (newValue) => {
 function certificateUpload(e){
   file.value=e.target.files[0];
 }
+const documents=ref([])
+
+const getPersonalDocuments = async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_documents', {headers});
+  if (response.status === 200) {
+    documents.value = response.data.user;
+    console.log(references)
+  }
+}
 const saveDocument = async () => {
   const formData = new FormData()
   formData.append('name',name.value)
@@ -32,6 +41,9 @@ const saveDocument = async () => {
   }
 
 }
+onMounted(()=>{
+  getPersonalDocuments()
+})
 </script>
 
 <template>
@@ -62,6 +74,26 @@ const saveDocument = async () => {
 
 
         </form>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th colspan="4">List of My Reference</th>
+          </tr>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Ocupation</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="document in documents" :key="document">
+            <td>{{document.name}}</td>
+            <td>{{document.description}}</td>
+            <td>{{document.file}}</td>
+
+          </tr>
+          </tbody>
+        </table>
         <div class="d-flex mt-4 justify-content-around">
           <div class="">
             <router-link to="/applicant/referees" class="text-decoration-none">Previous</router-link>

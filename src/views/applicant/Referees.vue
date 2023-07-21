@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import axios from "axios";
 import {headers} from "../../composables/headers.js";
 
@@ -7,6 +7,16 @@ const fullName =ref('')
 const occupation =ref('')
 const email = ref('')
 const phone  = ref('')
+// const user_id=ref('')
+const references=ref([])
+
+const getPersonalReferee = async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_referees', {headers});
+  if (response.status === 200) {
+     references.value = response.data.user;
+    console.log(references)
+  }
+}
 const saveReference = async () =>{
   const formData = new FormData()
   formData.append('fullName',fullName.value)
@@ -18,6 +28,9 @@ const saveReference = async () =>{
     alert('Success')
   }
 }
+onMounted(()=>{
+  getPersonalReferee()
+})
 </script>
 
 <template>
@@ -56,6 +69,29 @@ const saveReference = async () =>{
                                 </div>
                               </div>
                             </form>
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th colspan="4">List of My Reference</th>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Ocupation</th>
+                <th>Email</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="reference in references" :key="reference">
+                <td>{{reference.fullName}}</td>
+                <td>{{reference.phone}}</td>
+                <td>{{reference.occupation}}</td>
+                <td>{{reference.email}}</td>
+
+              </tr>
+              </tbody>
+            </table>
+
             <div class="d-flex mt-4 justify-content-around">
               <div class="">
                 <router-link to="/applicant/courses" class="text-decoration-none">Previous</router-link>
@@ -67,6 +103,7 @@ const saveReference = async () =>{
 		                </div>
 		            </div>
 		            </div>
+
 
 		        </div>
 		    <!-- </div> -->

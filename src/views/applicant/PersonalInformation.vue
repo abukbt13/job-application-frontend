@@ -1,8 +1,9 @@
 <script setup>
 import axios from "axios";
-import {ref} from "vue";
-import {headers} from "../../composables/headers.js";
+import {onMounted, ref} from "vue";
+import {headers} from "@/composables/headers";
 
+const user_id = ref('')
 const firstName = ref('')
 const idNo = ref('')
 const lastName = ref('')
@@ -12,6 +13,22 @@ const address = ref('')
 const county = ref('')
 const constituency = ref('')
 
+const getPersonalInfo= async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_personal_info', { headers});
+  if(response.status === 200){
+    firstName.value=response.data.user[0].firstName
+    idNo.value=response.data.user[0].idNo
+    lastName.value=response.data.user[0].lastName
+    gender.value=response.data.user[0].gender
+    phone.value=response.data.user[0].phone
+    address.value=response.data.user[0].address
+    county.value=response.data.user[0].county
+    constituency.value=response.data.user[0].constituency
+    user_id.value=response.data.user[0].id
+    // console.log(firstName)
+  }
+
+}
 const savePersonalInfo =async () => {
     const formData = new FormData();
     formData.append("firstName", firstName.value);
@@ -28,9 +45,12 @@ const savePersonalInfo =async () => {
     alert('Personal Info Saved')
   }
 
+
 }
 
-
+onMounted(()=>{
+  getPersonalInfo()
+})
 </script>
 
 <template>

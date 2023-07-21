@@ -1,6 +1,6 @@
 <script setup>
 import axios from "axios"
-import {ref} from 'vue'
+import {onMounted, ref} from 'vue'
 import {useRouter} from "vue-router";
 
 
@@ -17,10 +17,24 @@ import {useRouter} from "vue-router";
      endDate:ref(''),
      baseUrl:'http://127.0.0.1:8000/api/'
     }
+const user_id=ref('')
+const getPersonalExperience  = async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_experience', {headers});
+  if (response.status === 200) {
+    position.value = response.data.user[0].position
+    organisation.value = response.data.user[0].organisation
+    workNature.value = response.data.user[0].workNature
+    startDate.value = response.data.user[0].startDate
+    endDate.value = response.data.user[0].endDate
+    user_id.value = response.data.user[0].id
+    console.log(response.data.user[0].id)
+  }
+}
     async function dopost(endpoint, data) {
         try {
           const res = await axios.post(baseUrl + endpoint, data,{headers});
         if(res.status==200){
+          console.log(res)
             alert('success')
         }
         } catch (error) {
@@ -44,6 +58,9 @@ import {useRouter} from "vue-router";
             workNature.value = ''
 
     }
+    onMounted(()=>{
+      getPersonalExperience()
+    })
 </script>
 
 <template>
