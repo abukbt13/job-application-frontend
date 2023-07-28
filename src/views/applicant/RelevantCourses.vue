@@ -11,6 +11,7 @@ import {useRouter} from "vue-router";
     };
 
       const level =ref('')
+      const cousedata =ref('')
       const institution=ref('')
       const course=ref('')
       const award=ref('')
@@ -21,16 +22,7 @@ import {useRouter} from "vue-router";
       const getPersonalQualificationCourses  = async () => {
        const response = await axios.get('http://127.0.0.1:8000/api/list_relevant_courses', {headers});
         if (response.status === 200) {
-          level.value = response.data.user[0].level;
-          institution.value = response.data.user[0].institution;
-          course.value = response.data.user[0].course;
-          award.value = response.data.user[0].award;
-          startDate.value = response.data.user[0].start_date;
-          endDate.value = response.data.user[0].end_date;
-          certNo.value = response.data.user[0].certNo;
-          user_id.value = response.data.user[0].id;
-          console.log(response.data.user[0].id)
-          console.log(response.data.user[0].level)
+          cousedata.value = response.data.user
         }
       }
 
@@ -38,17 +30,15 @@ import {useRouter} from "vue-router";
        const formData=new FormData()
           formData.append('institution',institution.value)
           formData.append('course',course.value)
-          formData.append('startDate',course.startDate)
-          formData.append('endDate',course.endDate)
-          formData.append('certNo',course.certNo)
+          formData.append('startDate',startDate.value)
+          formData.append('endDate',endDate.value)
+          formData.append('certNo',certNo.value)
 
   
         const res=await axios.post('http://127.0.0.1:8000/api/addOtherCourse',formData,{headers})
         if(res.status==200){
-          console.log(res)
-            alert('success')
+
         }
-        // dopost('addProfressional',data)
     }
     onMounted(()=>{
       getPersonalQualificationCourses()
@@ -97,6 +87,31 @@ import {useRouter} from "vue-router";
 
 
         </form>
+<!--        {{cousedata}}-->
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th colspan="4">List of My Reference</th>
+          </tr>
+          <tr>
+            <th>Institution Name</th>
+            <th>Course Name</th>
+            <th>Certificate No</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="data in cousedata" :key="data">
+            <td>{{data.institution}}</td>
+            <td>{{data.course}}</td>
+            <td>{{data.certNo}}</td>
+            <td>{{data.startDate}}</td>
+            <td>{{data.endDate}}</td>
+
+          </tr>
+          </tbody>
+        </table>
         <div class="d-flex mt-4 justify-content-around">
           <div class="">
             <router-link to="/applicant/qualification" class="text-decoration-none">Previous</router-link>
