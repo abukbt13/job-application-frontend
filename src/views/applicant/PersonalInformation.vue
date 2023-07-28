@@ -3,7 +3,7 @@ import axios from "axios";
 import {onMounted, ref} from "vue";
 import {headers} from "@/composables/headers";
 
-const user_id = ref('')
+const exist_id = ref('')
 const firstName = ref('')
 const idNo = ref('')
 const lastName = ref('')
@@ -24,7 +24,7 @@ const getPersonalInfo= async () => {
     address.value=response.data.user[0].address
     county.value=response.data.user[0].county
     constituency.value=response.data.user[0].constituency
-    user_id.value=response.data.user[0].id
+    exist_id.value=response.data.user[0].id
     // console.log(firstName)
   }
 
@@ -39,15 +39,28 @@ const savePersonalInfo =async () => {
     formData.append("county", county.value);
     formData.append("constituency", constituency.value);
     formData.append("idNo", idNo.value);
-
-    const ressponse = await axios.post('http://127.0.0.1:8000/api/addPersonalInfo',formData,{ headers })
+    formData.append("exist_id", exist_id.value);
+if(!exist_id.value) {
+  const ressponse = await axios.post('http://127.0.0.1:8000/api/addPersonalInfo',formData,{ headers })
   if(ressponse.status==200){
     alert('Personal Info Saved')
   }
+}
+else{
+  alert('bbhbp')
+  const ressponse = await axios.post('http://127.0.0.1:8000/api/update_personalInfo',formData,{ headers })
+  if(ressponse.status==200){
+    alert('Personal Info u')
+  }
+  else{
+    alert('haipati')
+  }
+}
+ 
 
 
 }
-
+console.log(exist_id)
 onMounted(()=>{
   getPersonalInfo()
 })

@@ -145,7 +145,7 @@ import Header from "@/views/includes/header.vue";
 <style scoped>
 .main{
   background: #f5ebe0;
-  //width: 100vw;
+  width: 100vw;
   height: 23rem;
 }
 .footer{
