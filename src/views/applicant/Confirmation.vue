@@ -7,6 +7,31 @@ const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
+//personal information
+const personalData=ref('')
+const getPersonalInfo= async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_personal_info', { headers});
+  if(response.status === 200){
+    personalData.value=response.data.user
+    // console.log(firstName)
+  }
+}
+//professional qualification
+  const ProfessionalData =ref('')
+  const institution=ref('')
+  const course=ref('')
+  const award=ref('')
+  const startDate=ref('')
+  const endDate=ref('')
+  const user_id=ref('')
+
+    const getPersonalQualification = async () => {
+      const response = await axios.get('http://127.0.0.1:8000/api/list_professional_qualificaion', {headers});
+      if (response.status === 200) {
+        ProfessionalData.value = response.data.user
+    }
+  }
+//vacancies
 const vacancyname = ref('')
 const getVacancies = async () => {
   const response = await axios.get('http://127.0.0.1:8000/api/list_vacancies', { headers});
@@ -17,6 +42,8 @@ const getVacancies = async () => {
 }
 onMounted(()=>{
   getVacancies()
+  getPersonalInfo()
+  getPersonalQualification()
 })
 </script>
 
@@ -25,23 +52,68 @@ onMounted(()=>{
   <p>Vacancy: <span>{{vacancyname}}</span></p>
 
   <table  class="m-3 table table-bordered">
-
       <thead>
-        <th>My Personal details</th>
-
+        <th >My Personal details</th>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>phone</th>
+          <th>address</th>
+          <th>ID no.</th>
+          <th>County</th>
+          <th>Constituency</th>
+        </tr>
       </thead>
     <tbody>
-      <tr>
-        <td>ndcnd : Avraffa</td>
-        <td>ndcnd</td>
-      </tr>
-      <tr>
-        <td>ndcnd</td>
-        <td>ndcnd</td>
+      <tr v-for="data in personalData" :key="data">
+        <td>{{ data.firstName }}</td>
+        <td>{{ data.lastName }}</td>
+        <td>{{ data.gender }}</td>
+        <td>{{ data.phone }}</td>
+        <td>{{ data.address }}</td>
+        <td>{{ data.idNo }}</td>
+        <td>{{ data.county }}</td>
+        <td>{{ data.constituency }}</td>
       </tr>
     </tbody>
-
   </table>
+  <div class="d-flex mt-4 justify-content-around">
+    <div class="">
+      <router-link to="/applicant/information" class="text-decoration-none">Edit</router-link>
+    </div>
+  </div>
+
+
+
+  <table  class="m-3 table table-bordered">
+      <thead>
+        <th >My Professional details</th>
+        <tr>
+          <th>Level</th>
+          <th>Institution</th>
+          <th>Course</th>
+          <th>Award</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr v-for="data in ProfessionalData" :key="data">
+        <td>{{ data.level }}</td>
+        <td>{{ data.institution }}</td>
+        <td>{{ data.course }}</td>
+        <td>{{ data.award }}</td>
+        <td>{{ data.startDate }}</td>
+        <td>{{ data.endDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex mt-4 justify-content-around">
+    <div class="">
+      <router-link to="/applicant/information" class="text-decoration-none">Edit</router-link>
+    </div>
+  </div>
 </template>
 
 <style scoped>
