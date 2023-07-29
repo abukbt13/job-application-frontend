@@ -9,7 +9,6 @@ const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
-
   const level =ref('')
   const institution=ref('')
   const course=ref('')
@@ -27,7 +26,7 @@ const headers = {
         award.value = response.data.user[0].award
         startDate.value = response.data.user[0].start_date
         endDate.value = response.data.user[0].end_date
-        user_id.value = response.data.user[0].id
+        user_id.value=response.data.user[0].id
         console.log(response.data.user[0])
       }
     }
@@ -36,22 +35,48 @@ const headers = {
             formData.append('level',level.value)
             formData.append('institution',institution.value)
             formData.append('course',course.value)
-            formData.append('award',course.award)
-            formData.append('startDate',course.startDate)
-            formData.append('endDate',course.endDate)
-  
-        const res=await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{headers})
-        if(res.status==200){
-                  Swal.fire({
+            formData.append('award',award.value)
+            formData.append('startDate',startDate.value)
+            formData.append('endDate',endDate.value)
+            formData.append("user_id", user_id.value);
+
+
+            if(!user_id.value) {
+              const ressponse = await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{ headers })
+              if(ressponse.status==200){
+                alert('Personal Info Saved')
+              }
+            }
+            else{
+              alert('bbhbp')
+              const ressponse = await axios.post('http://127.0.0.1:8000/api/update_ProfessionalQualification',formData,{ headers })
+              if(ressponse.status==200){
+                 Swal.fire({
                         title: 'Success submitting ?',
                         text: "You have successfully added your personal qualification",
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'continue'
                   }).then((result) => {
-                       router.push('/applicant/courses')
-                  })
-        }
+                      //  router.push('/applicant/courses')
+                  })              
+      }
+              else{
+                alert('Not found')
+              }
+            }
+        // const res=await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{headers})
+        // if(res.status==200){
+        //           Swal.fire({
+        //                 title: 'Success submitting ?',
+        //                 text: "You have successfully added your personal qualification",
+        //                 icon: 'success',
+        //                 confirmButtonColor: '#3085d6',
+        //                 confirmButtonText: 'continue'
+        //           }).then((result) => {
+        //                router.push('/applicant/courses')
+        //           })
+        // }
     }
 
     onMounted(()=> {
