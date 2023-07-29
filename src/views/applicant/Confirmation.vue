@@ -18,13 +18,6 @@ const getPersonalInfo= async () => {
 }
 //professional qualification
   const ProfessionalData =ref('')
-  const institution=ref('')
-  const course=ref('')
-  const award=ref('')
-  const startDate=ref('')
-  const endDate=ref('')
-  const user_id=ref('')
-
     const getPersonalQualification = async () => {
       const response = await axios.get('http://127.0.0.1:8000/api/list_professional_qualificaion', {headers});
       if (response.status === 200) {
@@ -38,12 +31,39 @@ const getVacancies = async () => {
   if(response.status === 200){
     vacancyname.value=response.data.data[0].name
   }
-
+}
+//Employment Experience
+const experienceData = ref('')
+const getPersonalExperience  = async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_experience', {headers});
+  if (response.status === 200) {
+    experienceData.value = response.data.user
+    // console.log(response.data.user[0].id)
+  }
+}
+//other relevant courses
+const courseData =ref('')
+const getPersonalQualificationCourses  = async () => {
+const response = await axios.get('http://127.0.0.1:8000/api/list_relevant_courses', {headers});
+    if (response.status === 200) {
+      courseData.value = response.data.user
+    }
+  }
+  //Referees 
+  const refereesData =ref('')
+  const getPersonalReferee = async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_referees', {headers});
+  if (response.status === 200) {
+    refereesData.value = response.data.user;
+  }
 }
 onMounted(()=>{
   getVacancies()
   getPersonalInfo()
   getPersonalQualification()
+  getPersonalExperience()
+  getPersonalQualificationCourses()
+  getPersonalReferee()
 })
 </script>
 
@@ -111,11 +131,89 @@ onMounted(()=>{
   </table>
   <div class="d-flex mt-4 justify-content-around">
     <div class="">
-      <router-link to="/applicant/information" class="text-decoration-none">Edit</router-link>
+      <router-link to="/applicant/qualification" class="text-decoration-none">Edit</router-link>
+    </div>
+  </div>
+  <!-- Work Experience -->
+  <table  class="m-3 table table-bordered">
+      <thead>
+        <th >My Work Experience</th>
+        <tr>
+          <th>Position</th>
+          <th>Organization</th>
+          <th>Nature of Work</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr v-for="data in experienceData" :key="data">
+        <td>{{ data.position }}</td>
+        <td>{{ data.organisation }}</td>
+        <td>{{ data.workNature }}</td>
+        <td>{{ data.startDate }}</td>
+        <td>{{ data.endDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex mt-4 justify-content-around">
+    <div class="">
+      <router-link to="/applicant/experience" class="text-decoration-none">Edit</router-link>
+    </div>
+  </div>
+
+<!-- other relevant work experience -->
+<table  class="m-3 table table-bordered">
+      <thead>
+        <th >Other Relevant Courses</th>
+        <tr>
+          <th>Institution</th>
+          <th>Course</th>
+          <th>Certificate no.</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr v-for="data in courseData" :key="data">
+        <td>{{ data.institution }}</td>
+        <td>{{ data.course }}</td>
+        <td>{{ data.certNo }}</td>
+        <td>{{ data.startDate }}</td>
+        <td>{{ data.endDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex mt-4 justify-content-around">
+    <div class="">
+      <router-link to="/applicant/courses" class="text-decoration-none">Edit</router-link>
+    </div>
+  </div>
+  <!-- refereees -->
+  <table  class="m-3 table table-bordered">
+      <thead>
+        <th >Other Relevant Courses</th>
+        <tr>
+          <th>Full Name</th>
+          <th>Occupation</th>
+          <th>Email</th>
+          <th>Phone </th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr v-for="data in refereesData" :key="data">
+        <td>{{ data.fullName }}</td>
+        <td>{{ data.occupation }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.phone }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex mt-4 justify-content-around">
+    <div class="">
+      <router-link to="/applicant/referees" class="text-decoration-none">Edit</router-link>
     </div>
   </div>
 </template>
-
 <style scoped>
-
 </style>
