@@ -27,20 +27,37 @@ const getPersonalExperience  = async () => {
     startDate.value = response.data.user[0].startDate
     endDate.value = response.data.user[0].endDate
     user_id.value = response.data.user[0].id
-    console.log(response.data.user[0].id)
+    // console.log(response.data.user[0].id)
   }
 }
     async function dopost(endpoint, data) {
+
+      if(!user_id.value){
         try {
           const res = await axios.post(baseUrl + endpoint, data,{headers});
-        if(res.status==200){
-          console.log(res)
+          if(res.status==200){
+            console.log(res)
             alert('success')
-        }
+          }
         } catch (error) {
           console.error(error);
           // Handle the error
         }
+      }
+      else{
+        try {
+          const update_endpoint2='update_experience'
+          const res = await axios.post(baseUrl + update_endpoint2, data,{headers});
+          if(res.status==200){
+            console.log(res)
+            alert('success')
+          }
+        } catch (error) {
+          console.error(error);
+          // Handle the error
+        }
+      }
+
       }
           const employmentExperience=async()=>{
           const formData=new FormData()
