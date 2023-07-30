@@ -7,6 +7,7 @@ const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
+const user = JSON.parse(localStorage.getItem('user'));
 //personal information
 const personalData=ref('')
 const getPersonalInfo= async () => {
@@ -66,9 +67,12 @@ const getPersonalDocuments = async () => {
   }
 }
 //checkbox
+const state = ref('')
+
 const isChecked = ref(false);
 watch(isChecked, () => {
     });
+
 const comfirmed = async () =>{
   const response = await axios.get('http://127.0.0.1:8000/api/updateStatus',{headers});
 if(response.data.status ==='success'){
@@ -78,6 +82,8 @@ else{
   alert('failed there is an error that occured')
 }
 }
+
+
 onMounted(()=>{
   getVacancies()
   getPersonalInfo()
@@ -264,6 +270,7 @@ onMounted(()=>{
     </label>
     <p>
       <button @click="comfirmed" class="btn btn-primary" :disabled="!isChecked">Submit</button>
+
     </p>
   </div>
 </template>
