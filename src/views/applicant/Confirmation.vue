@@ -69,6 +69,15 @@ const getPersonalDocuments = async () => {
 const isChecked = ref(false);
 watch(isChecked, () => {
     });
+const comfirmed = async () =>{
+  const response = await axios.get('http://127.0.0.1:8000/api/updateStatus',{headers});
+if(response.data.status ==='success'){
+  alert(response.data.message)
+}
+else{
+  alert('failed there is an error that occured')
+}
+}
 onMounted(()=>{
   getVacancies()
   getPersonalInfo()
@@ -254,7 +263,7 @@ onMounted(()=>{
       I hereby declare that all the above information is correct and accurate. 
     </label>
     <p>
-      <button :disabled="!isChecked">Submit</button>
+      <button @click="comfirmed" class="btn btn-primary" :disabled="!isChecked">Submit</button>
     </p>
   </div>
 </template>
