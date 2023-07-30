@@ -1,6 +1,6 @@
 <script setup>
 import axios from "axios";
-import {onMounted, ref} from "vue";
+import {onMounted, ref,watch} from "vue";
 import {useRouter} from "vue-router";
 const token = localStorage.getItem('token');
 const router =useRouter()
@@ -57,6 +57,18 @@ const response = await axios.get('http://127.0.0.1:8000/api/list_relevant_course
     refereesData.value = response.data.user;
   }
 }
+//documents
+const documentData=ref([])
+const getPersonalDocuments = async () => {
+  const response = await axios.get('http://127.0.0.1:8000/api/list_documents', {headers});
+  if (response.status === 200) {
+    documentData.value = response.data.user;
+  }
+}
+//checkbox
+const isChecked = ref(false);
+watch(isChecked, () => {
+    });
 onMounted(()=>{
   getVacancies()
   getPersonalInfo()
@@ -64,6 +76,7 @@ onMounted(()=>{
   getPersonalExperience()
   getPersonalQualificationCourses()
   getPersonalReferee()
+  getPersonalDocuments()
 })
 </script>
 
@@ -189,10 +202,31 @@ onMounted(()=>{
       <router-link to="/applicant/courses" class="text-decoration-none">Edit</router-link>
     </div>
   </div>
+  <!-- documents -->
+  <table  class="m-3 table table-bordered">
+      <thead>
+        <th >Documents</th>
+        <tr>
+          <th>Document Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr v-for="data in documentData" :key="data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex mt-4 justify-content-around">
+    <div class="">
+      <router-link to="/applicant/referees" class="text-decoration-none">Edit</router-link>
+    </div>
+  </div>
   <!-- refereees -->
   <table  class="m-3 table table-bordered">
       <thead>
-        <th >Other Relevant Courses</th>
+        <th >Referees</th>
         <tr>
           <th>Full Name</th>
           <th>Occupation</th>
@@ -213,6 +247,15 @@ onMounted(()=>{
     <div class="">
       <router-link to="/applicant/referees" class="text-decoration-none">Edit</router-link>
     </div>
+  </div>
+  <div id="app">
+    <label>
+      <input type="checkbox" v-model="isChecked" />
+      I hereby declare that all the above information is correct and accurate. 
+    </label>
+    <p>
+      <button :disabled="!isChecked">Submit</button>
+    </p>
   </div>
 </template>
 <style scoped>
