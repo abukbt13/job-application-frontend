@@ -7,6 +7,7 @@ import {ref} from "vue";
 function userLogin(res) {
     if(res.status === 'success'){
       localStorage.setItem('token',res.token)
+      localStorage.setItem('user',JSON.stringify(res.user))
       router.push('/applicant')
     }
     else {

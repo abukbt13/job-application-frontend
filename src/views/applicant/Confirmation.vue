@@ -7,6 +7,7 @@ const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
+const user = JSON.parse(localStorage.getItem('user'));
 //personal information
 const personalData=ref('')
 const getPersonalInfo= async () => {
@@ -66,9 +67,17 @@ const getPersonalDocuments = async () => {
   }
 }
 //checkbox
+const state = ref('')
+const updateStatus =async() => {
+  const response = await axios.post('http://127.0.0.1:8000/api/updateStatus', {headers});
+  if(response.status===200){
+
+    }
+}
 const isChecked = ref(false);
 watch(isChecked, () => {
     });
+
 onMounted(()=>{
   getVacancies()
   getPersonalInfo()
@@ -254,7 +263,7 @@ onMounted(()=>{
       I hereby declare that all the above information is correct and accurate. 
     </label>
     <p>
-      <button :disabled="!isChecked">Submit</button>
+      <button @click="updateStatus" :disabled="!isChecked">Submit</button>
     </p>
   </div>
 </template>
