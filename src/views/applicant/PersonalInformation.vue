@@ -76,31 +76,31 @@ onMounted(()=>{
         <div class="form-group row">
           <div class="col">
             <label for="firstname" class="col-4 col-form-label">First Name*</label>
-            <input type="text" v-model="firstName" class="form-control" />
+            <input type="text" v-model="firstName" required class="form-control" />
           </div>
           <div class="col">
             <label for="lastname" class="col-4 col-form-label">Last Name*</label>
-            <input type="text" v-model="lastName" class="form-control" />
+            <input type="text" v-model="lastName" required class="form-control" />
           </div>
        </div>
       <div class="form-group row">
           <div class="col">
             <label for="email" class="col-4 col-form-label">Gender*</label>
-            <input type="text" v-model="gender" class="form-control" />
+            <input type="text" v-model="gender" required class="form-control" />
           </div>
           <div class="col">
             <label for="phone" class="col-4 col-form-label">Phone Number</label>
-            <input type="number" v-model="phone" class="form-control" />
+            <input type="number" v-model="phone" required class="form-control" />
           </div>
        </div>
         <div class="form-group row">
           <div class="col">
             <label for="address" class="col-4 col-form-label">Address*</label>
-            <input type="text" v-model="address" class="form-control" />
+            <input type="text" v-model="address" required class="form-control" />
           </div>
           <div class="col">
             <label for="address" class="col-4 col-form-label">Id Number</label>
-            <input type="number" v-model="idNo" class="form-control" />
+            <input type="number" v-model="idNo" required class="form-control" />
           </div>
 
        </div>
@@ -108,11 +108,11 @@ onMounted(()=>{
       <div class="form-group row">
         <div class="col">
           <label for="city" class="col-form-label">County*</label>
-          <input type="text" v-model="county" class="form-control" />
+          <input type="text" v-model="county" required class="form-control" />
         </div>
         <div class="col">
           <label for="constituency" class="col-form-label">Constituency*</label>
-          <input type="text" v-model="constituency" class="form-control" />
+          <input type="text" v-model="constituency" required class="form-control" />
         </div>
       </div>
         <div class="form-group">

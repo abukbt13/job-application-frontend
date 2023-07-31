@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <nav style="background: #003049;" class="navbar text-white top-nav navbar-expand-lg">
+  <nav style="background: #81cdf7;" class="navbar text-white top-nav navbar-expand-lg">
     <div class="container-fluid d-flex flex-row justify-content-between">
       <a class="navbar-brand text-white" href="#">Shara solutions </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

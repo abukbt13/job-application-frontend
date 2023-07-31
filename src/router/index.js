@@ -66,6 +66,9 @@ const routes = [
       path:'/applicant/referees',
       name:'referees',
       component:Referees,
+      meta: {
+        requiresEmploymentExperience: true,
+      },
     },
     {
       path:'/applicant/confirmation',
@@ -143,5 +146,21 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresEmploymentExperience)) {
+    const experienceComppleted = true;
+    if (!experienceComppleted) {
+      next({ name: 'experience' });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+
+
+
 
 export default router

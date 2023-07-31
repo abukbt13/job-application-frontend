@@ -59,6 +59,7 @@ const getPersonalExperience  = async () => {
       }
 
       }
+          const experienceComppleted=ref(false)
           const employmentExperience=async()=>{
           const formData=new FormData()
           formData.append('position',position.value)
@@ -68,6 +69,7 @@ const getPersonalExperience  = async () => {
           formData.append('workNature',workNature.value)
 
         dopost('addEmplomentExperience',formData)
+        experienceComppleted.value = ref(true)
             position.value = '';
             organisation.value = '';
             startDate.value = '';
@@ -90,27 +92,27 @@ const getPersonalExperience  = async () => {
           <div class="form-group row">
             <div class="col">
               <label for="organisation" class="col-4 col-form-label">Organisation</label>
-              <input type="text" v-model="organisation" class="form-control" />
+              <input type="text" v-model="organisation" required class="form-control" />
             </div>
             <div class="col">
               <label for="position" class="col-4 col-form-label">Position</label>
-              <input type="text" v-model="position" class="form-control" />
+              <input type="text" v-model="position" required class="form-control" />
             </div>
           </div>
           <div class="form-group row">
             <div class="col">
               <label for="workNature" class="col-4 col-form-label">Nature of work</label>
-              <input type="text" v-model="workNature" class="w-50 form-control" />
+              <input type="text" v-model="workNature" required class="w-50 form-control" />
             </div>
           </div>
           <div class="form-group row">
             <div class="col">
               <label for="startDate" class="col-4 col-form-label">Start date</label>
-              <input type="date" v-model="startDate" class="form-control">
+              <input type="date" v-model="startDate" required class="form-control">
             </div>
             <div class="col">
               <label for="endDate" class="col-4 col-form-label">End date</label>
-              <input type="date" v-model="endDate" class="form-control">
+              <input type="date" v-model="endDate" required class="form-control">
             </div>
           </div>
           <div class="d-flex justify-content-center">

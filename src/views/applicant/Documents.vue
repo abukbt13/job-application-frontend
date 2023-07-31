@@ -66,7 +66,7 @@ onMounted(()=>{
           <div class="form-group row">
             <div class="col">
               <label for="certificate" class="">KCSE Certificate</label>
-              <input type="file" @change="certificateUpload" id="institution" class="form-control" />
+              <input type="file" @change="certificateUpload" id="institution" required class="form-control" />
               <button class="btn btn-success">Submit</button>
 
           </div>
