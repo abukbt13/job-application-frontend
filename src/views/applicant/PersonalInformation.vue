@@ -24,7 +24,7 @@ const redirect = async  (progress) => {
     console.log('nice')
   }
   else {
-    await  router.push('/applicant/information')
+    await  router.push('/applicant')
   }
 }
 
@@ -58,6 +58,7 @@ const savePersonalInfo =async () => {
 if(!exist_id.value) {
   const ressponse = await axios.post('http://127.0.0.1:8000/api/addPersonalInfo',formData,{ headers })
   if(ressponse.status==200){
+    localStorage.setItem('progress',2)
     alert('Personal Info Saved')
   }
 }

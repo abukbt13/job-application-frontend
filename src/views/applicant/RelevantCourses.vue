@@ -9,7 +9,15 @@ import {useRouter} from "vue-router";
     const headers = {
       'Authorization': `Bearer ${token}`,
     };
+const progress = localStorage.getItem('progress')
 
+const redirect = async  (progress) => {
+  if(progress>2){
+  }
+  else {
+    await  router.push('/applicant/qualification')
+  }
+}
       const level =ref('')
       const cousedata =ref('')
       const institution=ref('')
@@ -38,10 +46,15 @@ import {useRouter} from "vue-router";
         const res=await axios.post('http://127.0.0.1:8000/api/addOtherCourse',formData,{headers})
         if(res.status==200){
 
+          localStorage.setItem('progress',4)
+          alert('courses Info saving')
+          await router.push('/applicant/experience')
+
         }
     }
     onMounted(()=>{
       getPersonalQualificationCourses()
+      redirect(progress)
     })
 </script>
 

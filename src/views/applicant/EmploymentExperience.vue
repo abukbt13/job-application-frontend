@@ -9,6 +9,15 @@ import {useRouter} from "vue-router";
     const headers = {
       'Authorization': `Bearer ${token}`,
     };
+const progress = localStorage.getItem('progress')
+
+const redirect = async  (progress) => {
+  if(progress>3){
+  }
+  else {
+    await  router.push('/applicant/courses')
+  }
+}
     const{position,organisation,workNature,startDate,endDate, baseUrl}={
      position:ref(''),
      organisation:ref(''),
@@ -36,8 +45,9 @@ const getPersonalExperience  = async () => {
         try {
           const res = await axios.post(baseUrl + endpoint, data,{headers});
           if(res.status==200){
-            console.log(res)
-            alert('success')
+            localStorage.setItem('progress',5)
+            alert('courses Info saving')
+            await router.push('/applicant/referees')
           }
         } catch (error) {
           console.error(error);
@@ -77,6 +87,7 @@ const getPersonalExperience  = async () => {
     }
     onMounted(()=>{
       getPersonalExperience()
+      redirect(progress)
     })
 </script>
 

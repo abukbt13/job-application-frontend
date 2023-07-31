@@ -7,6 +7,16 @@ const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
+const progress = localStorage.getItem('progress')
+
+const redirect = async  (progress) => {
+  if(progress>6){
+
+  }
+  else {
+    await  router.push('/applicant/document')
+  }
+}
 const user = JSON.parse(localStorage.getItem('user'));
 //personal information
 const personalData=ref('')
@@ -92,6 +102,7 @@ onMounted(()=>{
   getPersonalQualificationCourses()
   getPersonalReferee()
   getPersonalDocuments()
+  redirect(progress)
 })
 </script>
 

@@ -2,14 +2,24 @@
 import {onMounted, ref} from "vue";
 import axios from "axios";
 import {headers} from "../../composables/headers.js";
+import {useRouter} from "vue-router";
 
 const fullName =ref('')
 const occupation =ref('')
 const email = ref('')
 const phone  = ref('')
+const router = useRouter()
 // const user_id=ref('')
 const references=ref([])
+const progress = localStorage.getItem('progress')
 
+const redirect = async  (progress) => {
+  if(progress>4){
+  }
+  else {
+    await  router.push('/applicant/experience')
+  }
+}
 const getPersonalReferee = async () => {
   const response = await axios.get('http://127.0.0.1:8000/api/list_referees', {headers});
   if (response.status === 200) {
@@ -25,11 +35,14 @@ const saveReference = async () =>{
   formData.append('phone',phone.value)
   const response = await axios.post('http://127.0.0.1:8000/api/addReferees', formData,{headers })
   if(response.status===200){
-    alert('Success')
-  }
+
+    localStorage.setItem('progress',6)
+    alert('referees Info saving')
+    await router.push('/applicant/document')  }
 }
 onMounted(()=>{
   getPersonalReferee()
+  redirect(progress)
 })
 </script>
 
