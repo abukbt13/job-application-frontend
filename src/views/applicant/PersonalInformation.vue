@@ -2,6 +2,7 @@
 import axios from "axios";
 import {onMounted, ref} from "vue";
 import {headers} from "@/composables/headers";
+import {useRouter} from "vue-router";
 
 const exist_id = ref('')
 const firstName = ref('')
@@ -12,7 +13,12 @@ const phone = ref('')
 const address = ref('')
 const county = ref('')
 const constituency = ref('')
+const router = useRouter()
 
+const progress = localStorage.getItem('progress')
+alert(progress)
+const checkProgress =async (progress) => {
+}
 const getPersonalInfo= async () => {
   const response = await axios.get('http://127.0.0.1:8000/api/list_personal_info', { headers});
   if(response.status === 200){
@@ -60,9 +66,10 @@ else{
 
 
 }
-console.log(exist_id)
+
 onMounted(()=>{
   getPersonalInfo()
+  checkProgress()
 })
 </script>
 

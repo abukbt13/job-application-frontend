@@ -19,7 +19,6 @@ const getVacancies = async () => {
   const response = await axios.get('http://127.0.0.1:8000/api/list_vacancies', { headers});
   if(response.status === 200){
     vacancyname.value=response.data.data[0].name
-
     console.log(vacancyname)
   }
 
@@ -38,6 +37,7 @@ const applyFrontend = async () =>{
         'You have chosed a vacancy!',
         'success'
     ).then(() => {
+        localStorage.setItem('progress',1)
           router.push('/applicant/information')
         }
     )
