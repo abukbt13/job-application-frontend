@@ -2,6 +2,7 @@
 import axios from "axios";
 import {onMounted, ref} from "vue";
 import {headers} from "@/composables/headers";
+import {useRouter} from "vue-router";
 
 const exist_id = ref('')
 const firstName = ref('')
@@ -12,6 +13,20 @@ const phone = ref('')
 const address = ref('')
 const county = ref('')
 const constituency = ref('')
+const router = useRouter()
+
+
+const progress = localStorage.getItem('progress')
+const required = ref(1)
+
+const redirect = async  (progress) => {
+  if(progress>0){
+    console.log('nice')
+  }
+  else {
+    await  router.push('/applicant/information')
+  }
+}
 
 const getPersonalInfo= async () => {
   const response = await axios.get('http://127.0.0.1:8000/api/list_personal_info', { headers});
@@ -56,13 +71,14 @@ else{
     alert('haipati')
   }
 }
- 
+
 
 
 }
-console.log(exist_id)
+
 onMounted(()=>{
   getPersonalInfo()
+  redirect(progress)
 })
 </script>
 
