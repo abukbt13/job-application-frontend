@@ -21,7 +21,7 @@ const regerror = ref('')
        if(res.status === 200){
             if(res.data.status === 'success'){
               localStorage.setItem('token', res.data.token)
-              router.push('applicant')
+              // router.push('applicant')
             }
             else{
               regerror.value = res.data.message
