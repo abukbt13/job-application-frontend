@@ -114,11 +114,11 @@ const headers = {
             <div class="form-group row">
             <div class="col">
               <label for="institution" class="col-4 col-form-label">Institution Name</label>
-              <input v-model="institution" type="text" id="institution" class="form-control" />
+              <input v-model="institution" type="text" id="institution" required class="form-control" />
             </div>
               <div class="col">
                 <label for="award" class="col-4 col-form-label">Award</label><br>
-                <select v-model="award" class="form-control" id="">
+                <select v-model="award"  required class="form-control" id="">
                   <option value="">Select</option>
                   <option value="First class">First Class</option>
                   <option value="Second Class">Second Class</option>
@@ -131,11 +131,11 @@ const headers = {
           <div class="form-group row">
             <div class="col">
               <label for="startDate" class="col-4 col-form-label">Start date</label>
-              <input type="date" v-model="startDate" class="form-control">
+              <input type="date" v-model="startDate" required class="form-control">
             </div>
             <div class="col">
               <label for="endDate" class="col-4 col-form-label">End date</label>
-              <input type="date" v-model="endDate" class="form-control">
+              <input type="date" v-model="endDate" required class="form-control">
             </div>
           </div>
           <div class="d-flex justify-content-center">

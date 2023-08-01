@@ -55,22 +55,22 @@ import {useRouter} from "vue-router";
           <div class="form-group row">
             <div class="col">
               <label for="institution" class="col-4 col-form-label">Institution Name</label>
-              <input  type="text" v-model="institution" id="institution" class="form-control" />
+              <input  type="text" v-model="institution" id="institution" required class="form-control" />
             </div>
             <div class="col">
               <label for="course" class="col-4 col-form-label">Course  Name</label>
-              <input type="text" v-model="course" id="institution" class="form-control" />
+              <input type="text" v-model="course" id="institution" required class="form-control" />
             </div>
           </div>
           <div class="form-group row">
 
             <div class="col">
               <label for="certNo" class="col-4 col-form-label">Certificate Number</label><br>
-              <input type="text" v-model="certNo" id="institution" class="form-control" />
+              <input type="text" v-model="certNo" id="institution" required class="form-control" />
             </div>
             <div class="col">
               <label for="startDate" class="col-4 col-form-label">Start date</label>
-              <input type="date" v-model="startDate" class="form-control">
+              <input type="date" v-model="startDate" required class="form-control">
             </div>
           </div>
 
@@ -78,7 +78,7 @@ import {useRouter} from "vue-router";
           <div class="form-group row">
             <div class="col">
               <label for="endDate" class="col-4 col-form-label">End date</label>
-              <input type="date" v-model="endDate" class=" w-50 form-control">
+              <input type="date" v-model="endDate" required class=" w-50 form-control">
             </div>
           </div>
           <div class="d-flex justify-content-center">

@@ -42,33 +42,33 @@ onMounted(()=>{
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5">Referees</h3>
-		                    <form @submit.prevent="saveReference">
-                                <div class="form-group row mt-2">
-                                     <label for="name" class="col-4 col-form-label">Name*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" v-model="fullName" class="form-control form-control-lg" />
-                                </div>
-                                    <label for="occupation" class="col-2 col-form-label">Occupation*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" v-model="occupation" class="form-control form-control-lg" />
-                                </div>
-                                </div>
-                                <div class="form-group row mt-2">
-                                     <label for="phone" class="col-4 col-form-label">Phone*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" v-model="phone" class="form-control form-control-lg" />
-                                </div>
-                                    <label for="email" class="col-2 col-form-label">Email*</label> 
-                                <div class="col-2 mb-4">
-                                    <input type="text" v-model="email" class="form-control form-control-lg" />
-                                </div>
-                                </div>
-                              <div class="form-group row">
-                                <div class="offset-4 col-8">
-                                  <button name="submit" type="submit" class="btn btn-primary">Save & continue</button>
-                                </div>
-                              </div>
-                            </form>
+              <form @submit.prevent="saveReference">
+                      <div class="form-group row mt-2">
+                            <label for="name" class="col-4 col-form-label">Name*</label> 
+                      <div class="col-2 mb-4">
+                          <input type="text" v-model="fullName" required class="form-control form-control-lg" />
+                      </div>
+                          <label for="occupation" class="col-2 col-form-label">Occupation*</label> 
+                      <div class="col-2 mb-4">
+                          <input type="text" v-model="occupation" required class="form-control form-control-lg" />
+                      </div>
+                      </div>
+                      <div class="form-group row mt-2">
+                            <label for="phone" class="col-4 col-form-label">Phone*</label> 
+                      <div class="col-2 mb-4">
+                          <input type="text" v-model="phone" required class="form-control form-control-lg" />
+                      </div>
+                          <label for="email" class="col-2 col-form-label">Email*</label> 
+                      <div class="col-2 mb-4">
+                          <input type="text" v-model="email" required class="form-control form-control-lg" />
+                      </div>
+                      </div>
+                    <div class="form-group row">
+                      <div class="offset-4 col-8">
+                        <button name="submit" type="submit" required class="btn btn-primary">Save & continue</button>
+                      </div>
+                    </div>
+                  </form>
             <table class="table table-bordered">
               <thead>
               <tr>

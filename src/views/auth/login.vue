@@ -8,7 +8,14 @@ function userLogin(res) {
     if(res.status === 'success'){
       localStorage.setItem('token',res.token)
       localStorage.setItem('progress',res.user.progress)
-      router.push('/applicant')
+      if(res.user.role === 'admin'){
+        alert('hgj')
+        router.push('/admin')
+      }
+      else{
+        alert()
+        router.push('/applicant')
+      }
     }
     else {
       error.value=res.message

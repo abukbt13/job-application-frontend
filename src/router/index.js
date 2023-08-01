@@ -13,15 +13,14 @@ import Confirmation from "@/views/applicant/Confirmation.vue"
 import Referees from "@/views/applicant/Referees.vue"
 import Dashboard from "@/views/dashboard/Dashboard.vue";
 import Frontend from "@/views/admin/Shortlisted/Frontend.vue";
-import Vacancies from "@/views/admin/Vacancies.vue";
 import Applicant from "@/views/dashboard/Applicant.vue";
-import Vacancy from "@/views/applicant/Vacancy.vue";
 import PersonalInformation from "@/views/applicant/PersonalInformation.vue";
 import EmploymentExperience from "@/views/applicant/EmploymentExperience.vue";
 import Testing from "@/views/testing/Testing.vue";
 
 import Watch from "@/views/new_concepts/Watch.vue";
 import FinishReset from "@/views/auth/FinishReset.vue";
+import ApplicantDetails from "@/views/admin/ApplicantDetails";
 
 
 const routes = [
@@ -66,6 +65,9 @@ const routes = [
       path:'/applicant/referees',
       name:'referees',
       component:Referees,
+      meta: {
+        requiresEmploymentExperience: true,
+      },
     },
     {
       path:'/applicant/confirmation',
@@ -106,13 +108,9 @@ const routes = [
     name:'dashboard',
     component:Dashboard,
     children: [
+
       {
         path: '/dashboard',
-        name: 'vacancy',
-        component: Vacancies
-      },
-      {
-        path: '/dashboard/applicant',
         name: 'user_applicant',
         component: Applicant_Users
       },
@@ -120,6 +118,11 @@ const routes = [
         path: '/dashboard/short_listed',
         name: 'short_listed',
         component: Frontend
+      },
+      {
+        path: '/dashboard/applicant_details/:id',
+        name: 'applicant_detail',
+        component: ApplicantDetails
       }
     ]
   },
@@ -143,5 +146,21 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresEmploymentExperience)) {
+    const experienceComppleted = true;
+    if (!experienceComppleted) {
+      next({ name: 'experience' });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+
+
+
 
 export default router

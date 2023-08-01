@@ -15,4 +15,5 @@ app.use(VueSweetalert2)
 app.use(ShFrontend,{
     sessionTimeout: 120
   })
+  
 app.mount('#app')
