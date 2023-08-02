@@ -3,7 +3,8 @@
 import { headers } from "@/composables/headers.js";
 import axios from "axios";
 import {onMounted, ref, watch} from "vue";
-
+import {useRouter} from "vue-router";
+const router = useRouter()
 const description =ref('')
 const name =ref('')
 const file =ref('')
@@ -16,6 +17,15 @@ watch(name, (newValue) => {
     description.value = 'KCSE Certificate';
   }
 });
+const progress = localStorage.getItem('progress')
+
+const redirect = async  (progress) => {
+  if(progress>5){
+  }
+  else {
+    await  router.push('/applicant/referees')
+  }
+}
 function certificateUpload(e){
   file.value=e.target.files[0];
 }
@@ -37,12 +47,18 @@ const saveDocument = async () => {
 
   const response  = await axios.post('http://127.0.0.1:8000/api/addDocument',formData,{headers})
   if(response.status===200){
-    alert('success')
+
+    localStorage.setItem('progress',7)
+    alert('referees Info saving')
+    await router.push('/applicant/confirmation')
+
   }
 
 }
 onMounted(()=>{
+  redirect(progress)
   getPersonalDocuments()
+
 })
 </script>
 

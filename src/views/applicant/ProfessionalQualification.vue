@@ -17,6 +17,16 @@ const headers = {
   const endDate=ref('')
   const user_id=ref('')
 
+const progress = localStorage.getItem('progress')
+
+const redirect = async  (progress) => {
+  if(progress>1){
+  }
+  else {
+    await  router.push('/applicant/information')
+  }
+}
+
     const getPersonalQualification = async () => {
       const response = await axios.get('http://127.0.0.1:8000/api/list_professional_qualificaion', {headers});
       if (response.status === 200) {
@@ -44,11 +54,13 @@ const headers = {
             if(!user_id.value) {
               const ressponse = await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{ headers })
               if(ressponse.status==200){
-                alert('Personal Info Saved')
+                localStorage.setItem('progress',3)
+                alert('Personal Info saving')
+               await router.push('/applicant/courses')
               }
             }
             else{
-              alert('bbhbp')
+              alert('updating')
               const ressponse = await axios.post('http://127.0.0.1:8000/api/update_ProfessionalQualification',formData,{ headers })
               if(ressponse.status==200){
                  Swal.fire({
@@ -80,6 +92,7 @@ const headers = {
     }
 
     onMounted(()=> {
+      redirect(progress)
       getPersonalQualification()
     })
 </script>

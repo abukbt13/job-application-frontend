@@ -7,6 +7,16 @@ const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
+const progress = localStorage.getItem('progress')
+
+const redirect = async  (progress) => {
+  if(progress>6){
+
+  }
+  else {
+    await  router.push('/applicant/document')
+  }
+}
 const user = JSON.parse(localStorage.getItem('user'));
 //personal information
 const personalData=ref('')
@@ -92,51 +102,54 @@ onMounted(()=>{
   getPersonalQualificationCourses()
   getPersonalReferee()
   getPersonalDocuments()
+  redirect(progress)
 })
 </script>
 
 <template>
-<h1>My Application Details</h1>
-  <p>Vacancy: <span>{{vacancyname}}</span></p>
+<h1 class="text-center">My Application Details</h1>
+  <h3 class="text-center">Vacancy: <span class="text-primary">{{vacancyname}}</span></h3>
 
   <table  class="m-3 table table-bordered">
       <thead>
-        <th >My Personal details</th>
+        <tr><th colspan="6" class="text-center">My Personal details</th></tr>
+      </thead>
+    <tbody>
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Gender</th>
           <th>phone</th>
           <th>address</th>
-          <th>ID no.</th>
           <th>County</th>
           <th>Constituency</th>
         </tr>
-      </thead>
-    <tbody>
+
+
       <tr v-for="data in personalData" :key="data">
         <td>{{ data.firstName }}</td>
         <td>{{ data.lastName }}</td>
-        <td>{{ data.gender }}</td>
         <td>{{ data.phone }}</td>
         <td>{{ data.address }}</td>
-        <td>{{ data.idNo }}</td>
         <td>{{ data.county }}</td>
         <td>{{ data.constituency }}</td>
       </tr>
+    <tr>
+      <td colspan="6" class="text-center">
+        <router-link to="/applicant/information" class="text-decoration-none">View and edit</router-link>
+      </td>
+    </tr>
     </tbody>
   </table>
-  <div class="d-flex mt-4 justify-content-around">
-    <div class="">
-      <router-link to="/applicant/information" class="text-decoration-none">Edit</router-link>
-    </div>
-  </div>
 
 
 
   <table  class="m-3 table table-bordered">
       <thead>
-        <th >My Professional details</th>
+        <tr>
+          <th colspan="6">My Professional details</th>
+        </tr>
+      </thead>
+    <tbody>
         <tr>
           <th>Level</th>
           <th>Institution</th>
@@ -145,8 +158,7 @@ onMounted(()=>{
           <th>Start Date</th>
           <th>End Date</th>
         </tr>
-      </thead>
-    <tbody>
+
       <tr v-for="data in ProfessionalData" :key="data">
         <td>{{ data.level }}</td>
         <td>{{ data.institution }}</td>
@@ -155,17 +167,23 @@ onMounted(()=>{
         <td>{{ data.startDate }}</td>
         <td>{{ data.endDate }}</td>
       </tr>
+    <tr>
+      <td colspan="6" class="text-center">
+        <router-link to="/applicant/qualification" class="text-decoration-none">view and Edit</router-link>
+
+      </td>
+    </tr>
     </tbody>
   </table>
-  <div class="d-flex mt-4 justify-content-around">
-    <div class="">
-      <router-link to="/applicant/qualification" class="text-decoration-none">Edit</router-link>
-    </div>
-  </div>
+
   <!-- Work Experience -->
   <table  class="m-3 table table-bordered">
-      <thead>
-        <th >My Work Experience</th>
+    <thead>
+    <tr>
+       <th colspan="5" class="text-center">My Work Experience</th>
+     </tr>
+    </thead>
+       <tbody>
         <tr>
           <th>Position</th>
           <th>Organization</th>
@@ -173,8 +191,6 @@ onMounted(()=>{
           <th>Start Date</th>
           <th>End Date</th>
         </tr>
-      </thead>
-    <tbody>
       <tr v-for="data in experienceData" :key="data">
         <td>{{ data.position }}</td>
         <td>{{ data.organisation }}</td>
@@ -182,97 +198,108 @@ onMounted(()=>{
         <td>{{ data.startDate }}</td>
         <td>{{ data.endDate }}</td>
       </tr>
+       <tr>
+         <td colspan="5" class="text-center">
+           <router-link to="/applicant/experience" class="text-decoration-none">View Edit</router-link>
+         </td>
+       </tr>
     </tbody>
   </table>
-  <div class="d-flex mt-4 justify-content-around">
-    <div class="">
-      <router-link to="/applicant/experience" class="text-decoration-none">Edit</router-link>
-    </div>
-  </div>
+  <hr>
 
 <!-- other relevant work experience -->
 <table  class="m-3 table table-bordered">
       <thead>
-        <th >Other Relevant Courses</th>
-        <tr>
-          <th>Institution</th>
-          <th>Course</th>
-          <th>Certificate no.</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-        </tr>
-      </thead>
-    <tbody>
-      <tr v-for="data in courseData" :key="data">
-        <td>{{ data.institution }}</td>
-        <td>{{ data.course }}</td>
-        <td>{{ data.certNo }}</td>
-        <td>{{ data.startDate }}</td>
-        <td>{{ data.endDate }}</td>
+      <tr>
+        <th colspan="5"  class="text-center">Other Relevant Courses</th>
       </tr>
+      </thead>
+        <tbody>
+          <tr>
+            <th>Institution</th>
+            <th>Course</th>
+            <th>Certificate no.</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+          <tr v-for="data in courseData" :key="data">
+            <td>{{ data.institution }}</td>
+            <td>{{ data.course }}</td>
+            <td>{{ data.certNo }}</td>
+            <td>{{ data.startDate }}</td>
+            <td>{{ data.endDate }}</td>
+          </tr>
+        <tr>
+          <td colspan="5" class="text-center">
+            <router-link to="/applicant/courses" class="text-decoration-none">View andEdit</router-link>
+          </td>
+        </tr>
     </tbody>
   </table>
-  <div class="d-flex mt-4 justify-content-around">
-    <div class="">
-      <router-link to="/applicant/courses" class="text-decoration-none">Edit</router-link>
-    </div>
-  </div>
+
   <!-- documents -->
   <table  class="m-3 table table-bordered">
       <thead>
-        <th >Documents</th>
+        <tr>
+          <th colspan="2" class="text-center">Documents</th>
+        </tr>
+      </thead>
+    <tbody>
         <tr>
           <th>Document Name</th>
           <th>Description</th>
         </tr>
-      </thead>
-    <tbody>
+
       <tr v-for="data in documentData" :key="data">
         <td>{{ data.name }}</td>
         <td>{{ data.description }}</td>
       </tr>
+    <tr>
+      <td colspan="2" class="text-center">
+      <router-link to="/applicant/referees" class="text-decoration-none">View and Edit</router-link>
+    </td>
+    </tr>
     </tbody>
   </table>
-  <div class="d-flex mt-4 justify-content-around">
-    <div class="">
-      <router-link to="/applicant/referees" class="text-decoration-none">Edit</router-link>
-    </div>
-  </div>
+
   <!-- refereees -->
   <table  class="m-3 table table-bordered">
       <thead>
-        <th >Referees</th>
+      <tr>
+        <th colspan="4" class="text-center">Referees</th>
+      </tr>
+      </thead>
+    <tbody>
         <tr>
           <th>Full Name</th>
           <th>Occupation</th>
           <th>Email</th>
           <th>Phone </th>
         </tr>
-      </thead>
-    <tbody>
+
       <tr v-for="data in refereesData" :key="data">
         <td>{{ data.fullName }}</td>
         <td>{{ data.occupation }}</td>
         <td>{{ data.email }}</td>
         <td>{{ data.phone }}</td>
       </tr>
+    <tr>
+      <td class="text-center" colspan="4">
+        <router-link to="/applicant/referees" class="text-decoration-none">Edit</router-link>
+      </td>
+    </tr>
     </tbody>
   </table>
-  <div class="d-flex mt-4 justify-content-around">
-    <div class="">
-      <router-link to="/applicant/referees" class="text-decoration-none">Edit</router-link>
-    </div>
-  </div>
-  <div id="app">
-    <label>
-      <input type="checkbox" v-model="isChecked" />
-      I hereby declare that all the above information is correct and accurate. 
-    </label>
-    <p>
-      <button @click="comfirmed" class="btn btn-primary" :disabled="!isChecked">Submit</button>
 
-    </p>
-  </div>
+      <div id="" class="confirm justify-content-center align-items-center d-flex flex-column">
+          <p class="text-uppercase">
+            <input type="checkbox" v-model="isChecked" />
+            I hereby declare that all the above information is correct and accurate.
+          </p>
+
+              <button @click="comfirmed" class="btn mt-2 w-50 btn-primary" :disabled="!isChecked">Submit</button>
+
+      </div>
 </template>
 <style scoped>
 </style>

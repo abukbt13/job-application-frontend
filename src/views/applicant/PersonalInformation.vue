@@ -15,8 +15,19 @@ const county = ref('')
 const constituency = ref('')
 const router = useRouter()
 
+
 const progress = localStorage.getItem('progress')
-alert(progress)
+const required = ref(1)
+
+const redirect = async  (progress) => {
+  if(progress>0){
+    console.log('nice')
+  }
+  else {
+    await  router.push('/applicant')
+  }
+}
+
 const checkProgress =async (progress) => {
 }
 const getPersonalInfo= async () => {
@@ -49,6 +60,8 @@ const savePersonalInfo =async () => {
 if(!exist_id.value) {
   const ressponse = await axios.post('http://127.0.0.1:8000/api/addPersonalInfo',formData,{ headers })
   if(ressponse.status==200){
+    localStorage.setItem('progress',2)
+    await router.push('/applicant/qualification')
     alert('Personal Info Saved')
   }
 }
@@ -62,14 +75,14 @@ else{
     alert('haipati')
   }
 }
- 
+
 
 
 }
 
 onMounted(()=>{
   getPersonalInfo()
-  checkProgress()
+  redirect(progress)
 })
 </script>
 

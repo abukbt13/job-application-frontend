@@ -23,6 +23,7 @@ const getVacancies = async () => {
   }
 
 }
+
 const applyFrontend = async () =>{
   name.value ="Frontend";
   description.value ="Creating Endpoints api for our frontend applications.Testing of endpoints to ensure authentications are met.";
@@ -60,6 +61,7 @@ const applyFrontend = async () =>{
             'Your vacancy have been updated .',
             'success'
         ).then(() => {
+              localStorage.setItem('progress',1)
               router.push('/applicant/information')
             }
         )
@@ -81,7 +83,8 @@ const applyBackend = async () =>{
         'You have chosed a vacancy!',
         'success'
     ).then(() => {
-          router.push('/applicant/information')
+      localStorage.setItem('progress',1)
+      router.push('/applicant/information')
         }
     )
   }
@@ -123,7 +126,8 @@ const applyDevops = async () =>{
         'You have chosed a vacancy!',
         'success'
     ).then(() => {
-          router.push('/applicant/information')
+      localStorage.setItem('progress',1)
+      router.push('/applicant/information')
         }
     )
   }
