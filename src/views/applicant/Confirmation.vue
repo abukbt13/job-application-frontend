@@ -8,7 +8,7 @@ const headers = {
   'Authorization': `Bearer ${token}`,
 };
 const progress = localStorage.getItem('progress')
-
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 const redirect = async  (progress) => {
   if(progress>6){
 
@@ -21,16 +21,16 @@ const user = JSON.parse(localStorage.getItem('user'));
 //personal information
 const personalData=ref('')
 const getPersonalInfo= async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_personal_info', { headers});
+  const response = await axios.get(apiUrl+'list_personal_info', { headers});
   if(response.status === 200){
     personalData.value=response.data.user
     // console.log(firstName)
   }
 }
-//professional qualification
+//professional qualificationgit
   const ProfessionalData =ref('')
     const getPersonalQualification = async () => {
-      const response = await axios.get('http://127.0.0.1:8000/api/list_professional_qualificaion', {headers});
+      const response = await axios.get(apiUrl+'list_professional_qualificaion', {headers});
       if (response.status === 200) {
         ProfessionalData.value = response.data.user
     }
@@ -38,7 +38,7 @@ const getPersonalInfo= async () => {
 //vacancies
 const vacancyname = ref('')
 const getVacancies = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_vacancies', { headers});
+  const response = await axios.get(apiUrl/'list_vacancies', { headers});
   if(response.status === 200){
     vacancyname.value=response.data.data[0].name
   }
@@ -46,7 +46,7 @@ const getVacancies = async () => {
 //Employment Experience
 const experienceData = ref('')
 const getPersonalExperience  = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_experience', {headers});
+  const response = await axios.get(apiUrl+'list_experience', {headers});
   if (response.status === 200) {
     experienceData.value = response.data.user
     // console.log(response.data.user[0].id)
@@ -55,7 +55,7 @@ const getPersonalExperience  = async () => {
 //other relevant courses
 const courseData =ref('')
 const getPersonalQualificationCourses  = async () => {
-const response = await axios.get('http://127.0.0.1:8000/api/list_relevant_courses', {headers});
+const response = await axios.get(apiUrl+'list_relevant_courses', {headers});
     if (response.status === 200) {
       courseData.value = response.data.user
     }
@@ -63,7 +63,7 @@ const response = await axios.get('http://127.0.0.1:8000/api/list_relevant_course
   //Referees 
   const refereesData =ref('')
   const getPersonalReferee = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_referees', {headers});
+  const response = await axios.get(apiUrl+'list_referees', {headers});
   if (response.status === 200) {
     refereesData.value = response.data.user;
   }
@@ -71,7 +71,7 @@ const response = await axios.get('http://127.0.0.1:8000/api/list_relevant_course
 //documents
 const documentData=ref([])
 const getPersonalDocuments = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_documents', {headers});
+  const response = await axios.get(apiUrl+'list_documents', {headers});
   if (response.status === 200) {
     documentData.value = response.data.user;
   }
@@ -84,7 +84,7 @@ watch(isChecked, () => {
     });
 
 const comfirmed = async () =>{
-  const response = await axios.get('http://127.0.0.1:8000/api/updateStatus',{headers});
+  const response = await axios.get(apiUrl+'updateStatus',{headers});
 if(response.data.status ==='success'){
   alert(response.data.message)
 }

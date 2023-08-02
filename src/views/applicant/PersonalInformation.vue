@@ -17,6 +17,8 @@ const router = useRouter()
 
 
 const progress = localStorage.getItem('progress')
+const apiUrl = import.meta.env.VITE_APP_API_URL;
+
 const required = ref(1)
 
 const redirect = async  (progress) => {
@@ -31,7 +33,7 @@ const redirect = async  (progress) => {
 const checkProgress =async (progress) => {
 }
 const getPersonalInfo= async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_personal_info', { headers});
+  const response = await axios.get(apiUrl+'list_personal_info', { headers});
   if(response.status === 200){
     firstName.value=response.data.user[0].firstName
     idNo.value=response.data.user[0].idNo
@@ -58,7 +60,7 @@ const savePersonalInfo =async () => {
     formData.append("idNo", idNo.value);
     formData.append("exist_id", exist_id.value);
 if(!exist_id.value) {
-  const ressponse = await axios.post('http://127.0.0.1:8000/api/addPersonalInfo',formData,{ headers })
+  const ressponse = await axios.post(apiUrl+'addPersonalInfo',formData,{ headers })
   if(ressponse.status==200){
     localStorage.setItem('progress',2)
     await router.push('/applicant/qualification')
@@ -67,7 +69,7 @@ if(!exist_id.value) {
 }
 else{
   alert('bbhbp')
-  const ressponse = await axios.post('http://127.0.0.1:8000/api/update_personalInfo',formData,{ headers })
+  const ressponse = await axios.post(apiUrl+'update_personalInfo',formData,{ headers })
   if(ressponse.status==200){
     alert('Personal Info u')
   }

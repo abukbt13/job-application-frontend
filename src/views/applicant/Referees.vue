@@ -12,6 +12,7 @@ const router = useRouter()
 // const user_id=ref('')
 const references=ref([])
 const progress = localStorage.getItem('progress')
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const redirect = async  (progress) => {
   if(progress>4){
@@ -21,7 +22,7 @@ const redirect = async  (progress) => {
   }
 }
 const getPersonalReferee = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_referees', {headers});
+  const response = await axios.get(apiUrl+'list_referees', {headers});
   if (response.status === 200) {
      references.value = response.data.user;
     console.log(references)
@@ -33,7 +34,7 @@ const saveReference = async () =>{
   formData.append('occupation',occupation.value)
   formData.append('email',email.value)
   formData.append('phone',phone.value)
-  const response = await axios.post('http://127.0.0.1:8000/api/addReferees', formData,{headers })
+  const response = await axios.post(apiUrl+'addReferees', formData,{headers })
   if(response.status===200){
 
     localStorage.setItem('progress',6)

@@ -18,6 +18,7 @@ const headers = {
   const user_id=ref('')
 
 const progress = localStorage.getItem('progress')
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const redirect = async  (progress) => {
   if(progress>1){
@@ -28,7 +29,7 @@ const redirect = async  (progress) => {
 }
 
     const getPersonalQualification = async () => {
-      const response = await axios.get('http://127.0.0.1:8000/api/list_professional_qualificaion', {headers});
+      const response = await axios.get(apiUrl+'list_professional_qualificaion', {headers});
       if (response.status === 200) {
         level.value = response.data.user[0].level
         institution.value = response.data.user[0].institution
@@ -52,7 +53,7 @@ const redirect = async  (progress) => {
 
 
             if(!user_id.value) {
-              const ressponse = await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{ headers })
+              const ressponse = await axios.post(apiUrl+'addProfessional',formData,{ headers })
               if(ressponse.status==200){
                 localStorage.setItem('progress',3)
                 alert('Personal Info saving')
@@ -61,7 +62,7 @@ const redirect = async  (progress) => {
             }
             else{
               alert('updating')
-              const ressponse = await axios.post('http://127.0.0.1:8000/api/update_ProfessionalQualification',formData,{ headers })
+              const ressponse = await axios.post(apiUrl+'update_ProfessionalQualification',formData,{ headers })
               if(ressponse.status==200){
                  Swal.fire({
                         title: 'Success submitting ?',
@@ -77,18 +78,7 @@ const redirect = async  (progress) => {
                 alert('Not found')
               }
             }
-        // const res=await axios.post('http://127.0.0.1:8000/api/addProfessional',formData,{headers})
-        // if(res.status==200){
-        //           Swal.fire({
-        //                 title: 'Success submitting ?',
-        //                 text: "You have successfully added your personal qualification",
-        //                 icon: 'success',
-        //                 confirmButtonColor: '#3085d6',
-        //                 confirmButtonText: 'continue'
-        //           }).then((result) => {
-        //                router.push('/applicant/courses')
-        //           })
-        // }
+
     }
 
     onMounted(()=> {

@@ -10,6 +10,7 @@ import {useRouter} from "vue-router";
       'Authorization': `Bearer ${token}`,
     };
 const progress = localStorage.getItem('progress')
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const redirect = async  (progress) => {
   if(progress>2){
@@ -28,7 +29,7 @@ const redirect = async  (progress) => {
       const certNo=ref('')
       const user_id=ref('')
       const getPersonalQualificationCourses  = async () => {
-       const response = await axios.get('http://127.0.0.1:8000/api/list_relevant_courses', {headers});
+       const response = await axios.get(apiUrl+'list_relevant_courses', {headers});
         if (response.status === 200) {
           cousedata.value = response.data.user
         }
@@ -43,7 +44,7 @@ const redirect = async  (progress) => {
           formData.append('certNo',certNo.value)
 
   
-        const res=await axios.post('http://127.0.0.1:8000/api/addOtherCourse',formData,{headers})
+        const res=await axios.post(apiUrl+'addOtherCourse',formData,{headers})
         if(res.status==200){
 
           localStorage.setItem('progress',4)

@@ -11,12 +11,14 @@ const name = ref('')
 const vacancyname = ref('')
 const description = ref('')
 const token = localStorage.getItem('token');
+const apiUrl = import.meta.env.VITE_APP_API_URL;
+
 const router =useRouter()
 const headers = {
   'Authorization': `Bearer ${token}`,
 };
 const getVacancies = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_vacancies', { headers});
+  const response = await axios.get(apiUrl+'list_vacancies', { headers});
   if(response.status === 200){
     vacancyname.value=response.data.data[0].name
     console.log(vacancyname)
@@ -32,7 +34,7 @@ const applyFrontend = async () =>{
   formData.append('description', description.value)
 
   if (vacancyname.value === '') {
-    const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+    const response = await axios.post(apiUrl+'add_vacancy', formData, {headers})
     Swal.fire(
         'Good job!',
         'You have chosed a vacancy!',
@@ -54,7 +56,7 @@ const applyFrontend = async () =>{
       confirmButtonText: 'Update vacancy!'
     }).then((result) => {
       if (result.isConfirmed) {
-        const response =  axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+        const response =  axios.post(apiUrl+'add_vacancy', formData, {headers})
 
         Swal.fire(
             'Success!',
@@ -77,7 +79,7 @@ const applyBackend = async () =>{
   formData.append('name', name.value)
   formData.append('description', description.value)
   if (vacancyname.value === '') {
-    const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+    const response = await axios.post(apiUrl+'add_vacancy', formData, {headers})
     Swal.fire(
         'Good job!',
         'You have chosed a vacancy!',
@@ -99,7 +101,7 @@ const applyBackend = async () =>{
       confirmButtonText: 'Update vacancy!'
     }).then((result) => {
       if (result.isConfirmed) {
-        const response =  axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+        const response =  axios.post(apiUrl+'add_vacancy', formData, {headers})
 
         Swal.fire(
             'Success!',
@@ -120,7 +122,7 @@ const applyDevops = async () =>{
   formData.append('name', name.value)
   formData.append('description', description.value)
   if (vacancyname.value === '') {
-    const response = await axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+    const response = await axios.post(apiUrl+'add_vacancy', formData, {headers})
     Swal.fire(
         'Good job!',
         'You have chosed a vacancy!',
@@ -142,7 +144,7 @@ const applyDevops = async () =>{
       confirmButtonText: 'Update vacancy!'
     }).then((result) => {
       if (result.isConfirmed) {
-        const response =  axios.post('http://127.0.0.1:8000/api/add_vacancy', formData, {headers})
+        const response =  axios.post(apiUrl+'add_vacancy', formData, {headers})
 
         Swal.fire(
             'Success!',

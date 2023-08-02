@@ -10,6 +10,7 @@ import {useRouter} from "vue-router";
       'Authorization': `Bearer ${token}`,
     };
 const progress = localStorage.getItem('progress')
+const apiUrl = import.meta.env.VITE_APP_API_URL;
 
 const redirect = async  (progress) => {
   if(progress>3){
@@ -24,11 +25,11 @@ const redirect = async  (progress) => {
      workNature:ref(''),
      startDate:ref(''),
      endDate:ref(''),
-     baseUrl:'http://127.0.0.1:8000/api/'
+     baseUrl:apiUrl
     }
 const user_id=ref('')
 const getPersonalExperience  = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_experience', {headers});
+  const response = await axios.get(apiUrl+'list_experience', {headers});
   if (response.status === 200) {
     position.value = response.data.user[0].position
     organisation.value = response.data.user[0].organisation

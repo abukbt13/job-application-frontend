@@ -5,6 +5,9 @@ import axios from "axios";
 import {onMounted, ref, watch} from "vue";
 import {useRouter} from "vue-router";
 const router = useRouter()
+
+const apiUrl = import.meta.env.VITE_APP_API_URL;
+
 const description =ref('')
 const name =ref('')
 const file =ref('')
@@ -32,7 +35,7 @@ function certificateUpload(e){
 const documents=ref([])
 
 const getPersonalDocuments = async () => {
-  const response = await axios.get('http://127.0.0.1:8000/api/list_documents', {headers});
+  const response = await axios.get(apiUrl+'list_documents', {headers});
   if (response.status === 200) {
     documents.value = response.data.user;
     console.log(references)
@@ -45,7 +48,7 @@ const saveDocument = async () => {
   formData.append('file',file.value)
   console.log(formData)
 
-  const response  = await axios.post('http://127.0.0.1:8000/api/addDocument',formData,{headers})
+  const response  = await axios.post(apiUrl+'addDocument',formData,{headers})
   if(response.status===200){
 
     localStorage.setItem('progress',7)

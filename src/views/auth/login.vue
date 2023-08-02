@@ -4,13 +4,14 @@ const error = ref('')
 const router = useRouter()
 import { ShForm,shApis, ShTable } from '@iankibetsh/shframework'
 import {ref} from "vue";
+
 function userLogin(res) {
     if(res.status === 'success'){
       localStorage.setItem('token',res.token)
       localStorage.setItem('progress',res.user.progress)
       if(res.user.role === 'admin'){
         alert('hgj')
-        router.push('/admin')
+        router.push('/dashboard')
       }
       else{
         alert()
@@ -36,9 +37,6 @@ function userLogin(res) {
             <div class="row">
               <sh-form
               :fields="['email','password']"
-              :current-data="{
-                editedUser
-              }"
               action="auth/login"
               :successCallback="userLogin"
               />
