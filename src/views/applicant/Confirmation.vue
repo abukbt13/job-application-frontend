@@ -27,7 +27,7 @@ const getPersonalInfo= async () => {
     // console.log(firstName)
   }
 }
-//professional qualificationgit
+//professional qualification
   const ProfessionalData =ref('')
     const getPersonalQualification = async () => {
       const response = await axios.get(apiUrl+'list_professional_qualificaion', {headers});

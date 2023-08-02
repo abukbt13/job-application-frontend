@@ -99,7 +99,7 @@ const getPersonalExperience  = async () => {
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
 
-        <h3 class="text-center text-primary">Professional Experience</h3>
+        <h3 class="text-center text-primary"> Experience</h3>
         <form @submit.prevent="employmentExperience">
           <div class="form-group row">
             <div class="col">
